@@ -68,6 +68,7 @@
     <Compile Include="Adetails.Designer.cs">
       <DependentUpon>Adetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Encryptor.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

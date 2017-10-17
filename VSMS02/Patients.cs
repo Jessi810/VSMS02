@@ -49,6 +49,7 @@ namespace VSMS02
         {
             if (FormClosable)
             {
+                srlPatient.Close();
                 System.Windows.Forms.Application.Exit();
             }
             else
