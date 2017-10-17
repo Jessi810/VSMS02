@@ -12,9 +12,12 @@ namespace VSMS02
 {
     public partial class Pdetails : Form
     {
+        private static string pid = Patients.pid;
+
         public Pdetails()
         {
             InitializeComponent();
+            label1.Text = pid;
         }
 
         private void Pdetails_FormClosing(object sender, FormClosingEventArgs e)
