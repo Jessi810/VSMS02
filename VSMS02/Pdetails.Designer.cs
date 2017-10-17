@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
+            this.grdData = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -50,16 +52,27 @@
             this.lblFullName.TabIndex = 1;
             this.lblFullName.Text = "n/a";
             // 
+            // grdData
+            // 
+            this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdData.Location = new System.Drawing.Point(13, 99);
+            this.grdData.Name = "grdData";
+            this.grdData.Size = new System.Drawing.Size(619, 150);
+            this.grdData.TabIndex = 2;
+            // 
             // Pdetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(644, 261);
+            this.Controls.Add(this.grdData);
             this.Controls.Add(this.lblFullName);
             this.Controls.Add(this.label1);
             this.Name = "Pdetails";
             this.Text = "Patient Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pdetails_FormClosing);
+            this.Load += new System.EventHandler(this.Pdetails_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grdData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -69,5 +82,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblFullName;
+        private System.Windows.Forms.DataGridView grdData;
     }
 }
