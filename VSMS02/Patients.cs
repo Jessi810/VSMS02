@@ -76,18 +76,23 @@ namespace VSMS02
             // Run code below if the cell clicked is not a header cell
             if (e.RowIndex > -1 && e.ColumnIndex > -1)
             {
-                // Check if patient ID is not empty
-                if (grdPatients.Rows[e.RowIndex].Cells[0].Value != null)
+                int rowCount = grdPatients.RowCount - 1;
+                // Prevent the last row from being process as it is only blank
+                if (e.RowIndex < rowCount)
                 {
-                    // Get patient ID
-                    pid = grdPatients.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    Debug.WriteLine("Pid: " + pid);
+                    // Check if patient ID is not empty
+                    if (grdPatients.Rows[e.RowIndex].Cells[0].Value != null)
+                    {
+                        // Get patient ID
+                        pid = grdPatients.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        Debug.WriteLine("Pid: " + pid);
 
-                    //var t = new Thread(() => Application.Run(new Pdetails()));
-                    //t.Start();
+                        //var t = new Thread(() => Application.Run(new Pdetails()));
+                        //t.Start();
 
-                    Form form = new Pdetails(this);
-                    form.Show();
+                        Form form = new Pdetails(this);
+                        form.Show();
+                    }
                 }
             }
         }

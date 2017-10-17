@@ -41,7 +41,7 @@
             this.btnLogin.Location = new System.Drawing.Point(13, 226);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnLogin.TabIndex = 0;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -60,14 +60,16 @@
             this.txtUsername.Location = new System.Drawing.Point(16, 30);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(163, 20);
-            this.txtUsername.TabIndex = 2;
+            this.txtUsername.TabIndex = 0;
+            this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(16, 78);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(163, 20);
-            this.txtPassword.TabIndex = 4;
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // label2
             // 
@@ -84,7 +86,7 @@
             this.btnRegister.Location = new System.Drawing.Point(133, 110);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(46, 13);
-            this.btnRegister.TabIndex = 5;
+            this.btnRegister.TabIndex = 2;
             this.btnRegister.TabStop = true;
             this.btnRegister.Text = "Register";
             this.btnRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnRegister_LinkClicked);
