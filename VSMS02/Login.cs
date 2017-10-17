@@ -28,5 +28,12 @@ namespace VSMS02
         {
             System.Windows.Forms.Application.Exit();
         }
+
+        private void btnRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form form = new Register();
+            this.Hide();
+            form.Show();
+        }
     }
 }

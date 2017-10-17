@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace TFA.Helper
+namespace VSMS02
 {
-    public static class SerialImageEncryptor
+    public class Encryptor
     {
         public static string GeneratePassword(int length) //length of salt    
         {
