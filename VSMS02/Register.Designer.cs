@@ -35,6 +35,7 @@
             this.btnRegister = new System.Windows.Forms.Button();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtPassword
@@ -95,11 +96,22 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Confirm Password";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(94, 222);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 12;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtPassword);
@@ -124,5 +136,6 @@
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

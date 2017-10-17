@@ -18,6 +18,8 @@ namespace VSMS02
         public Login()
         {
             InitializeComponent();
+            txtUsername.Text = "admin";
+            txtPassword.Text = "admin";
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

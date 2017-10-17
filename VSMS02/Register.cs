@@ -28,6 +28,12 @@ namespace VSMS02
             string password = txtPassword.Text;
             string confirmPassword = txtConfirmPassword.Text;
 
+            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password) || String.IsNullOrEmpty(confirmPassword))
+            {
+                MessageBox.Show("Please enter a valid username and password.", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (password.Equals(confirmPassword))
             {
                 var key = Encryptor.GeneratePassword(16);
@@ -74,6 +80,13 @@ namespace VSMS02
         private void Register_FormClosing(object sender, FormClosingEventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form form = new Login();
+            form.Show();
         }
     }
 }
