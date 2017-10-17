@@ -43,7 +43,8 @@
             this.txtPassword.Location = new System.Drawing.Point(15, 74);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(163, 20);
-            this.txtPassword.TabIndex = 9;
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // label2
             // 
@@ -59,7 +60,8 @@
             this.txtUsername.Location = new System.Drawing.Point(15, 26);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(163, 20);
-            this.txtUsername.TabIndex = 7;
+            this.txtUsername.TabIndex = 0;
+            this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // label1
             // 
@@ -75,7 +77,7 @@
             this.btnRegister.Location = new System.Drawing.Point(12, 222);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
-            this.btnRegister.TabIndex = 5;
+            this.btnRegister.TabIndex = 3;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
@@ -85,7 +87,8 @@
             this.txtConfirmPassword.Location = new System.Drawing.Point(15, 123);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(163, 20);
-            this.txtConfirmPassword.TabIndex = 11;
+            this.txtConfirmPassword.TabIndex = 2;
+            this.txtConfirmPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // label3
             // 
@@ -101,7 +104,7 @@
             this.btnCancel.Location = new System.Drawing.Point(94, 222);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 12;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

@@ -88,5 +88,13 @@ namespace VSMS02
             Form form = new Login();
             form.Show();
         }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnRegister_Click(this, new EventArgs());
+            }
+        }
     }
 }
