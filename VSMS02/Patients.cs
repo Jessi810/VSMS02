@@ -54,6 +54,7 @@ namespace VSMS02
                 // Check if patient ID is not empty
                 if (grdPatients.Rows[e.RowIndex].Cells[0].Value != null)
                 {
+                    // Get patient ID
                     pid = grdPatients.Rows[e.RowIndex].Cells[0].Value.ToString();
                     Debug.WriteLine("Pid: " + pid);
 
