@@ -32,15 +32,16 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDetails = new System.Windows.Forms.Button();
             this.grdPatients = new System.Windows.Forms.DataGridView();
-            this.vSMSDataSet = new VSMS02.VSMSDataSet();
-            this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.patientTableAdapter = new VSMS02.VSMSDataSetTableAdapters.PatientTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vSMSDataSet = new VSMS02.VSMSDataSet();
+            this.patientTableAdapter = new VSMS02.VSMSDataSetTableAdapters.PatientTableAdapter();
+            this.srlPatient = new System.IO.Ports.SerialPort(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grdPatients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -79,20 +80,6 @@
             this.grdPatients.TabIndex = 2;
             this.grdPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPatients_CellClick);
             // 
-            // vSMSDataSet
-            // 
-            this.vSMSDataSet.DataSetName = "VSMSDataSet";
-            this.vSMSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // patientBindingSource
-            // 
-            this.patientBindingSource.DataMember = "Patient";
-            this.patientBindingSource.DataSource = this.vSMSDataSet;
-            // 
-            // patientTableAdapter
-            // 
-            this.patientTableAdapter.ClearBeforeFill = true;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -111,6 +98,25 @@
             this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
             this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
             // 
+            // patientBindingSource
+            // 
+            this.patientBindingSource.DataMember = "Patient";
+            this.patientBindingSource.DataSource = this.vSMSDataSet;
+            // 
+            // vSMSDataSet
+            // 
+            this.vSMSDataSet.DataSetName = "VSMSDataSet";
+            this.vSMSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // patientTableAdapter
+            // 
+            this.patientTableAdapter.ClearBeforeFill = true;
+            // 
+            // srlPatient
+            // 
+            this.srlPatient.PortName = "COM5";
+            this.srlPatient.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.srlPatient_DataReceived);
+            // 
             // Patients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,8 +130,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Patients_FormClosing);
             this.Load += new System.EventHandler(this.Patients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdPatients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -141,5 +147,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private System.IO.Ports.SerialPort srlPatient;
     }
 }

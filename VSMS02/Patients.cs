@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +16,8 @@ namespace VSMS02
 {
     public partial class Patients : Form
     {
+        private string connString = ConfigurationManager.ConnectionStrings["VSMS02.Properties.Settings.VSMSConnectionString"].ConnectionString;
+
         public Patients()
         {
             InitializeComponent();
@@ -35,13 +40,14 @@ namespace VSMS02
         private void Patients_FormClosing(object sender, FormClosingEventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+            srlPatient.Close();
         }
 
         private void Patients_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'vSMSDataSet.Patient' table. You can move, or remove it, as needed.
             this.patientTableAdapter.Fill(this.vSMSDataSet.Patient);
-
+            srlPatient.Open();
         }
 
         public static string pid = "";
@@ -60,6 +66,34 @@ namespace VSMS02
 
                     Form form = new Pdetails();
                     form.Show();
+                }
+            }
+        }
+
+        private void srlPatient_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            string datum = srlPatient.ReadLine();
+            Debug.Write(datum);
+            string[] data = datum.Split(',');
+            
+            string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
+            string dbDir = projDir + "\\VSMS.mdf";
+            string connString2 = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dbDir + ";Integrated Security=True";
+            
+            using (SqlConnection connection = new SqlConnection(connString2))
+            {
+                string query = "INSERT into Data (Timestamp,BloodPressure,PulseRate,Temperature,Patient_Id) VALUES (@timestamp,@bloodPressure,@pulseRate,@temperature,@patient_id)";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Connection = connection;
+                    cmd.Parameters.Add("@timestamp", SqlDbType.DateTime, 50).Value = DateTime.Now;
+                    cmd.Parameters.Add("@bloodPressure", SqlDbType.NVarChar, 50).Value = data[0];
+                    cmd.Parameters.Add("@pulseRate", SqlDbType.NVarChar, 50).Value = data[1];
+                    cmd.Parameters.Add("@temperature", SqlDbType.NVarChar, 50).Value = data[2];
+                    cmd.Parameters.Add("@patient_id", SqlDbType.Int, 50).Value = 1000;
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
