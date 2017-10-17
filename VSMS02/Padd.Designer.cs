@@ -29,44 +29,44 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblFirstName = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMiddleName = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblLastName = new System.Windows.Forms.Label();
+            this.lblBirthDate = new System.Windows.Forms.Label();
             this.dteBirthDate = new System.Windows.Forms.DateTimePicker();
             this.txtAge = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblAge = new System.Windows.Forms.Label();
             this.cboGender = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblGender = new System.Windows.Forms.Label();
             this.txtContactName = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblContactName = new System.Windows.Forms.Label();
             this.txtTelephoneNumber = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblTelephoneNumber = new System.Windows.Forms.Label();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblPhoneNumber = new System.Windows.Forms.Label();
             this.dteDateAdmitted = new System.Windows.Forms.DateTimePicker();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblDateAdmitted = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtPhilhealthNumber = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblPhilhealthNumber = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtAddress = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
             this.errAddPatient = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errAddPatient)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblFirstName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "First name";
+            this.lblFirstName.AutoSize = true;
+            this.lblFirstName.Location = new System.Drawing.Point(13, 13);
+            this.lblFirstName.Name = "lblFirstName";
+            this.lblFirstName.Size = new System.Drawing.Size(55, 13);
+            this.lblFirstName.TabIndex = 0;
+            this.lblFirstName.Text = "First name";
             // 
             // txtFirstName
             // 
@@ -82,14 +82,14 @@
             this.txtMiddleName.Size = new System.Drawing.Size(140, 20);
             this.txtMiddleName.TabIndex = 3;
             // 
-            // label2
+            // lblMiddleName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(159, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Middle name";
+            this.lblMiddleName.AutoSize = true;
+            this.lblMiddleName.Location = new System.Drawing.Point(159, 13);
+            this.lblMiddleName.Name = "lblMiddleName";
+            this.lblMiddleName.Size = new System.Drawing.Size(67, 13);
+            this.lblMiddleName.TabIndex = 2;
+            this.lblMiddleName.Text = "Middle name";
             // 
             // txtLastName
             // 
@@ -98,23 +98,23 @@
             this.txtLastName.Size = new System.Drawing.Size(140, 20);
             this.txtLastName.TabIndex = 5;
             // 
-            // label3
+            // lblLastName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(305, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Last name";
+            this.lblLastName.AutoSize = true;
+            this.lblLastName.Location = new System.Drawing.Point(305, 13);
+            this.lblLastName.Name = "lblLastName";
+            this.lblLastName.Size = new System.Drawing.Size(56, 13);
+            this.lblLastName.TabIndex = 4;
+            this.lblLastName.Text = "Last name";
             // 
-            // label4
+            // lblBirthDate
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 60);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Birthdate";
+            this.lblBirthDate.AutoSize = true;
+            this.lblBirthDate.Location = new System.Drawing.Point(13, 60);
+            this.lblBirthDate.Name = "lblBirthDate";
+            this.lblBirthDate.Size = new System.Drawing.Size(49, 13);
+            this.lblBirthDate.TabIndex = 6;
+            this.lblBirthDate.Text = "Birthdate";
             // 
             // dteBirthDate
             // 
@@ -130,14 +130,14 @@
             this.txtAge.Size = new System.Drawing.Size(99, 20);
             this.txtAge.TabIndex = 9;
             // 
-            // label5
+            // lblAge
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(219, 61);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(26, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Age";
+            this.lblAge.AutoSize = true;
+            this.lblAge.Location = new System.Drawing.Point(219, 61);
+            this.lblAge.Name = "lblAge";
+            this.lblAge.Size = new System.Drawing.Size(26, 13);
+            this.lblAge.TabIndex = 8;
+            this.lblAge.Text = "Age";
             // 
             // cboGender
             // 
@@ -150,14 +150,14 @@
             this.cboGender.Size = new System.Drawing.Size(121, 21);
             this.cboGender.TabIndex = 11;
             // 
-            // label6
+            // lblGender
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(320, 60);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Gender";
+            this.lblGender.AutoSize = true;
+            this.lblGender.Location = new System.Drawing.Point(320, 60);
+            this.lblGender.Name = "lblGender";
+            this.lblGender.Size = new System.Drawing.Size(42, 13);
+            this.lblGender.TabIndex = 11;
+            this.lblGender.Text = "Gender";
             // 
             // txtContactName
             // 
@@ -166,14 +166,14 @@
             this.txtContactName.Size = new System.Drawing.Size(140, 20);
             this.txtContactName.TabIndex = 17;
             // 
-            // label7
+            // lblContactName
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(305, 113);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(148, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Contact in case of emergency";
+            this.lblContactName.AutoSize = true;
+            this.lblContactName.Location = new System.Drawing.Point(305, 113);
+            this.lblContactName.Name = "lblContactName";
+            this.lblContactName.Size = new System.Drawing.Size(148, 13);
+            this.lblContactName.TabIndex = 16;
+            this.lblContactName.Text = "Contact in case of emergency";
             // 
             // txtTelephoneNumber
             // 
@@ -182,14 +182,14 @@
             this.txtTelephoneNumber.Size = new System.Drawing.Size(140, 20);
             this.txtTelephoneNumber.TabIndex = 15;
             // 
-            // label8
+            // lblTelephoneNumber
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(159, 113);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Telephone number";
+            this.lblTelephoneNumber.AutoSize = true;
+            this.lblTelephoneNumber.Location = new System.Drawing.Point(159, 113);
+            this.lblTelephoneNumber.Name = "lblTelephoneNumber";
+            this.lblTelephoneNumber.Size = new System.Drawing.Size(96, 13);
+            this.lblTelephoneNumber.TabIndex = 14;
+            this.lblTelephoneNumber.Text = "Telephone number";
             // 
             // txtPhoneNumber
             // 
@@ -198,14 +198,14 @@
             this.txtPhoneNumber.Size = new System.Drawing.Size(140, 20);
             this.txtPhoneNumber.TabIndex = 13;
             // 
-            // label9
+            // lblPhoneNumber
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 113);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 13);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Phone number";
+            this.lblPhoneNumber.AutoSize = true;
+            this.lblPhoneNumber.Location = new System.Drawing.Point(13, 113);
+            this.lblPhoneNumber.Name = "lblPhoneNumber";
+            this.lblPhoneNumber.Size = new System.Drawing.Size(76, 13);
+            this.lblPhoneNumber.TabIndex = 12;
+            this.lblPhoneNumber.Text = "Phone number";
             // 
             // dteDateAdmitted
             // 
@@ -214,14 +214,14 @@
             this.dteDateAdmitted.Size = new System.Drawing.Size(200, 20);
             this.dteDateAdmitted.TabIndex = 21;
             // 
-            // label10
+            // lblDateAdmitted
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 208);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(73, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "Date admitted";
+            this.lblDateAdmitted.AutoSize = true;
+            this.lblDateAdmitted.Location = new System.Drawing.Point(13, 208);
+            this.lblDateAdmitted.Name = "lblDateAdmitted";
+            this.lblDateAdmitted.Size = new System.Drawing.Size(73, 13);
+            this.lblDateAdmitted.TabIndex = 18;
+            this.lblDateAdmitted.Text = "Date admitted";
             // 
             // btnAdd
             // 
@@ -240,14 +240,14 @@
             this.txtPhilhealthNumber.Size = new System.Drawing.Size(140, 20);
             this.txtPhilhealthNumber.TabIndex = 19;
             // 
-            // label11
+            // lblPhilhealthNumber
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 159);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(93, 13);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "PhilHealth number";
+            this.lblPhilhealthNumber.AutoSize = true;
+            this.lblPhilhealthNumber.Location = new System.Drawing.Point(13, 159);
+            this.lblPhilhealthNumber.Name = "lblPhilhealthNumber";
+            this.lblPhilhealthNumber.Size = new System.Drawing.Size(93, 13);
+            this.lblPhilhealthNumber.TabIndex = 23;
+            this.lblPhilhealthNumber.Text = "PhilHealth number";
             // 
             // btnCancel
             // 
@@ -257,6 +257,7 @@
             this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtAddress
             // 
@@ -265,50 +266,52 @@
             this.txtAddress.Size = new System.Drawing.Size(286, 20);
             this.txtAddress.TabIndex = 27;
             // 
-            // label12
+            // lblAddress
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(159, 159);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(45, 13);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "Address";
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(159, 159);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(45, 13);
+            this.lblAddress.TabIndex = 26;
+            this.lblAddress.Text = "Address";
             // 
             // errAddPatient
             // 
+            this.errAddPatient.BlinkRate = 0;
+            this.errAddPatient.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errAddPatient.ContainerControl = this;
             // 
             // Padd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 332);
+            this.ClientSize = new System.Drawing.Size(460, 332);
             this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtPhilhealthNumber);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblPhilhealthNumber);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dteDateAdmitted);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblDateAdmitted);
             this.Controls.Add(this.txtContactName);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblContactName);
             this.Controls.Add(this.txtTelephoneNumber);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblTelephoneNumber);
             this.Controls.Add(this.txtPhoneNumber);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblPhoneNumber);
+            this.Controls.Add(this.lblGender);
             this.Controls.Add(this.cboGender);
             this.Controls.Add(this.txtAge);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblAge);
             this.Controls.Add(this.dteBirthDate);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblBirthDate);
             this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.txtMiddleName);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblMiddleName);
             this.Controls.Add(this.txtFirstName);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblFirstName);
             this.Name = "Padd";
             this.Text = "Add Patient";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Padd_FormClosing);
@@ -321,32 +324,32 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtMiddleName;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMiddleName;
         private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblLastName;
+        private System.Windows.Forms.Label lblBirthDate;
         private System.Windows.Forms.DateTimePicker dteBirthDate;
         private System.Windows.Forms.TextBox txtAge;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblAge;
         private System.Windows.Forms.ComboBox cboGender;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblGender;
         private System.Windows.Forms.TextBox txtContactName;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblContactName;
         private System.Windows.Forms.TextBox txtTelephoneNumber;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblTelephoneNumber;
         private System.Windows.Forms.TextBox txtPhoneNumber;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblPhoneNumber;
         private System.Windows.Forms.DateTimePicker dteDateAdmitted;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblDateAdmitted;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtPhilhealthNumber;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblPhilhealthNumber;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.ErrorProvider errAddPatient;
     }
 }

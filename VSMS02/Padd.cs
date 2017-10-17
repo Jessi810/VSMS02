@@ -37,8 +37,7 @@ namespace VSMS02
             string lastName = txtLastName.Text;
             string birthDate = dteBirthDate.Text;
             string address = txtAddress.Text;
-            //string gender = cboGender.SelectedItem.ToString();
-            string gender = cboGender.Text; Debug.WriteLine(cboGender.Text);
+            string gender = cboGender.Text;
             string age = txtAge.Text;
             string phoneNumber = txtPhoneNumber.Text;
             string telephoneNumber = txtTelephoneNumber.Text;
@@ -46,14 +45,26 @@ namespace VSMS02
             string philhealthNumber = txtPhilhealthNumber.Text;
             string dateAdmitted = dteDateAdmitted.Text;
 
+            // Validate form
             errAddPatient.Clear();
-            if (String.IsNullOrEmpty(firstName)) { errAddPatient.SetError(txtFirstName, "Should not be empty"); }
-            if (String.IsNullOrEmpty(middleName)) { errAddPatient.SetError(txtMiddleName, "Should not be empty"); }
-            if (String.IsNullOrEmpty(lastName)) { errAddPatient.SetError(txtLastName, "Should not be empty"); }
-            if (!IsDigitsOnly(age)) { errAddPatient.SetError(txtAge, "Should only be numeric"); }
-            if (!IsValidGender(gender)) { errAddPatient.SetError(cboGender, "Invalid gender"); }
-            if (!IsValidPhoneNumber(phoneNumber)) { errAddPatient.SetError(txtPhoneNumber, "Invalid phone number"); }
-            if (!IsValidTelephoneNumber(telephoneNumber)) { errAddPatient.SetError(txtTelephoneNumber, "Invalid telephone number"); }
+            Validation.ErrorCount = 0;
+            if (String.IsNullOrEmpty(firstName)) { errAddPatient.SetError(lblFirstName, "Should not be empty"); Validation.ErrorCount += 1; }
+            if (String.IsNullOrEmpty(middleName)) { errAddPatient.SetError(lblMiddleName, "Should not be empty"); Validation.ErrorCount += 1; }
+            if (String.IsNullOrEmpty(lastName)) { errAddPatient.SetError(lblLastName, "Should not be empty"); Validation.ErrorCount += 1; }
+            if (String.IsNullOrEmpty(age)) { errAddPatient.SetError(lblAge, "Should not be empty"); Validation.ErrorCount += 1; }
+            if (!Validation.IsDigitsOnly(age)) { errAddPatient.SetError(lblAge, "Should only be numeric"); Validation.ErrorCount += 1; }
+            if (!Validation.IsValidGender(gender)) { errAddPatient.SetError(lblGender, "Invalid gender"); Validation.ErrorCount += 1; }
+            if (!Validation.IsValidPhoneNumber(phoneNumber)) { errAddPatient.SetError(lblPhoneNumber, "Invalid phone number"); Validation.ErrorCount += 1; }
+            if (!Validation.IsValidTelephoneNumber(telephoneNumber)) { errAddPatient.SetError(lblTelephoneNumber, "Invalid telephone number"); Validation.ErrorCount += 1; }
+
+            if (!Validation.IsFormValid())
+            {
+                Debug.WriteLine("INVALID FORM : ERROR COUNT " + Validation.ErrorCount);
+                return;
+            }
+
+            // Reset counter if form is all valid
+            Validation.ErrorCount = 0;
 
             using (SqlConnection connection = new SqlConnection(connString2))
             {
@@ -76,7 +87,15 @@ namespace VSMS02
                     cmd.Parameters.Add("@philhealthNumber", SqlDbType.NVarChar).Value = philhealthNumber;
                     cmd.Parameters.Add("@dateAdmitted", SqlDbType.DateTime).Value = dateAdmitted;
                     connection.Open();
-                    cmd.ExecuteNonQuery();
+                    
+                    if (cmd.ExecuteNonQuery() != 1)
+                    {
+                        MessageBox.Show("Error adding patient.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    MessageBox.Show("Success adding patient.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Hide();
+                    Form form = new Patients();
+                    form.Show();
                 }
             }
         }
@@ -86,51 +105,11 @@ namespace VSMS02
             cboGender.SelectedItem = "Male";
         }
 
-        bool IsDigitsOnly(string str)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            foreach (char c in str)
-            {
-                if (!char.IsDigit(c))
-                    return false;
-            }
-
-            return true;
-        }
-
-        bool IsValidGender(string str)
-        {
-            if (str.ToLower().Equals("male")) return true;
-            if (str.ToLower().Equals("female")) return true;
-
-            return false;
-        }
-
-        bool IsValidPhoneNumber(string str)
-        {
-            string validChar = "0123456789-+ ";
-            foreach (char c in str)
-            {
-                if (!validChar.Contains(c))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        bool IsValidTelephoneNumber(String str)
-        {
-            string validChar = "0123456789-";
-            foreach (char c in str)
-            {
-                if (!validChar.Contains(c))
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            this.Hide();
+            Form form = new Patients();
+            form.Show();
         }
     }
 }
