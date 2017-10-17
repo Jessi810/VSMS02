@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
@@ -54,6 +55,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.errAddPatient = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errAddPatient)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -271,6 +274,10 @@
             this.label12.TabIndex = 26;
             this.label12.Text = "Address";
             // 
+            // errAddPatient
+            // 
+            this.errAddPatient.ContainerControl = this;
+            // 
             // Padd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,6 +312,8 @@
             this.Name = "Padd";
             this.Text = "Add Patient";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Padd_FormClosing);
+            this.Load += new System.EventHandler(this.Padd_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errAddPatient)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,5 +347,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ErrorProvider errAddPatient;
     }
 }
