@@ -16,7 +16,7 @@ namespace VSMS02
 {
     public partial class Pdetails : Form
     {
-        private static string pid = Patients.pid;
+        private string pid = Patients.pid;
         private string connString = ConfigurationManager.ConnectionStrings["VSMS02.Properties.Settings.VSMSConnectionString"].ConnectionString;
 
         BindingSource bindingSource1 = new BindingSource();
@@ -50,8 +50,43 @@ namespace VSMS02
             }
         }
 
+        private Patients patientsForm = null;
+        public Pdetails(Form callingForm)
+        {
+
+            patientsForm = callingForm as Patients;
+            this.patientsForm.Enabled = false;
+            InitializeComponent();
+
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM Patient WHERE Id=" + pid;
+                Debug.WriteLine("QUERY: " + query);
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string id = reader["Id"].ToString();
+                            string firstName = reader["FirstName"].ToString();
+                            string lastName = reader["LastName"].ToString();
+                            string middleName = reader["MiddleName"].ToString();
+
+                            lblFullName.Text = firstName + " " + middleName + " " + lastName;
+                        }
+                    }
+                }
+            }
+        }
+
         private void Pdetails_FormClosing(object sender, FormClosingEventArgs e)
         {
+            this.patientsForm.Enabled = true;
+            this.patientsForm.FormClosable = false;
             System.Windows.Forms.Application.Exit();
         }
 

@@ -24,6 +24,13 @@ namespace VSMS02
             InitializeComponent();
         }
 
+        public bool formClosable = true;
+        public bool FormClosable
+        {
+            get { return formClosable; }
+            set { formClosable = value; }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -40,7 +47,17 @@ namespace VSMS02
 
         private void Patients_FormClosing(object sender, FormClosingEventArgs e)
         {
-            System.Windows.Forms.Application.Exit();
+            if (FormClosable)
+            {
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
+                FormClosable = true;
+            }
+            
+            //System.Windows.Forms.Application.Exit();
             //srlPatient.Close();
         }
 
@@ -68,7 +85,7 @@ namespace VSMS02
                     //var t = new Thread(() => Application.Run(new Pdetails()));
                     //t.Start();
 
-                    Form form = new Pdetails();
+                    Form form = new Pdetails(this);
                     form.Show();
                 }
             }
