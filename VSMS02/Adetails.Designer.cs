@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSavePersonal = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSavePassword = new System.Windows.Forms.Button();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -43,52 +43,52 @@
             this.lblCurrentPassword = new System.Windows.Forms.Label();
             this.lblNewPassword = new System.Windows.Forms.Label();
             this.txtCurrentPassword = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.errEditAdmin = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errEditAdmin)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblUsername
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Username";
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(7, 23);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(55, 13);
+            this.lblUsername.TabIndex = 0;
+            this.lblUsername.Text = "Username";
             // 
-            // textBox1
+            // txtUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtUsername.Location = new System.Drawing.Point(6, 39);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(140, 20);
+            this.txtUsername.TabIndex = 1;
             // 
-            // textBox2
+            // txtName
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 88);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(140, 20);
-            this.textBox2.TabIndex = 3;
+            this.txtName.Location = new System.Drawing.Point(6, 88);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(140, 20);
+            this.txtName.TabIndex = 3;
             // 
-            // label2
+            // lblName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Name";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(7, 72);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.TabIndex = 2;
+            this.lblName.Text = "Name";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.btnSavePersonal);
+            this.groupBox1.Controls.Add(this.txtName);
+            this.groupBox1.Controls.Add(this.lblUsername);
+            this.groupBox1.Controls.Add(this.lblName);
+            this.groupBox1.Controls.Add(this.txtUsername);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(155, 237);
@@ -96,14 +96,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Personal details";
             // 
-            // button2
+            // btnSavePersonal
             // 
-            this.button2.Location = new System.Drawing.Point(10, 208);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(136, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSavePersonal.Location = new System.Drawing.Point(10, 208);
+            this.btnSavePersonal.Name = "btnSavePersonal";
+            this.btnSavePersonal.Size = new System.Drawing.Size(136, 23);
+            this.btnSavePersonal.TabIndex = 7;
+            this.btnSavePersonal.Text = "Save";
+            this.btnSavePersonal.UseVisualStyleBackColor = true;
+            this.btnSavePersonal.Click += new System.EventHandler(this.btnSavePersonal_Click);
             // 
             // groupBox2
             // 
@@ -179,17 +180,19 @@
             this.txtCurrentPassword.Size = new System.Drawing.Size(140, 20);
             this.txtCurrentPassword.TabIndex = 1;
             // 
-            // button3
+            // btnBack
             // 
-            this.button3.Location = new System.Drawing.Point(12, 287);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(136, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Go back";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnBack.Location = new System.Drawing.Point(12, 287);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(136, 23);
+            this.btnBack.TabIndex = 8;
+            this.btnBack.Text = "Go back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // errEditAdmin
             // 
+            this.errEditAdmin.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errEditAdmin.ContainerControl = this;
             // 
             // Adetails
@@ -197,12 +200,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 322);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Adetails";
             this.Text = "Admin Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Adetails_FormClosing);
+            this.Load += new System.EventHandler(this.Adetails_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -214,12 +218,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSavePersonal;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnSavePassword;
         private System.Windows.Forms.TextBox txtConfirmPassword;
@@ -228,7 +232,7 @@
         private System.Windows.Forms.Label lblCurrentPassword;
         private System.Windows.Forms.Label lblNewPassword;
         private System.Windows.Forms.TextBox txtCurrentPassword;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.ErrorProvider errEditAdmin;
     }
 }

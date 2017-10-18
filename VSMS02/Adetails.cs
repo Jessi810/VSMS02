@@ -62,34 +62,6 @@ namespace VSMS02
             return connString;
         }
 
-        private string GetUserHashKey(string un)
-        {
-            // Get hash key of user for decoding password
-            using (SqlConnection connection = new SqlConnection(GetConnString()))
-            {
-                connection.Open();
-
-                string query = "SELECT HashKey FROM Account WHERE Username='" + un + "'";
-
-                using (SqlCommand cmd = new SqlCommand(query, connection))
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return reader["HashKey"].ToString();
-                        }
-                        else
-                        {
-                            // TODO: Add error message when a hash key is not found
-                        }
-                    }
-                }
-
-                return null;
-            }
-        }
-
         private bool IsPasswordCorrect(string un, string pw)
         {
             using (SqlConnection connection = new SqlConnection(GetConnString()))
@@ -111,7 +83,7 @@ namespace VSMS02
                         }
                         else
                         {
-                            MessageBox.Show("Invalid1", "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Invalid", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
                     }
@@ -132,7 +104,7 @@ namespace VSMS02
                 }
                 else
                 {
-                    MessageBox.Show("Invalid2", "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Invalid current password", "Account Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
@@ -142,9 +114,7 @@ namespace VSMS02
         {
             using (SqlConnection connection = new SqlConnection(GetConnString()))
             {
-                string query = "UPDATE Account (Password,HashKey)" +
-                    " SET Password=@password, HashKey=@hashKey" +
-                    " WHERE Username='" + un + "'";
+                string query = "UPDATE Account SET Password=@password, HashKey=@hashKey WHERE Username='" + un + "'";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -152,14 +122,15 @@ namespace VSMS02
                     var hash = Encryptor.EncodePassword(newPassword, key);
 
                     cmd.Connection = connection;
-                    cmd.Parameters.Add("@password", SqlDbType.NVarChar).Value = hash;
-                    cmd.Parameters.Add("@hashKey", SqlDbType.NVarChar).Value = key;
+                    cmd.Parameters.AddWithValue("@password", hash);
+                    cmd.Parameters.AddWithValue("@hashKey", key);
                     connection.Open();
 
                     if (cmd.ExecuteNonQuery() != 1)
                     {
                         MessageBox.Show("Error changing password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                     MessageBox.Show("Success changing password.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     txtCurrentPassword.Text = "";
@@ -171,6 +142,90 @@ namespace VSMS02
                     //form.Show();
                 }
             }
+        }
+
+        private void SavePersonalInfo(string username, string newUsername, string newName)
+        {
+            using (SqlConnection connection = new SqlConnection(GetConnString()))
+            {
+                string query = "UPDATE Account SET Username=@username, Name=@name WHERE Username='" + username + "'";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Connection = connection;
+                    cmd.Parameters.AddWithValue("@username", newUsername);
+                    cmd.Parameters.AddWithValue("@name", newName);
+                    connection.Open();
+
+                    if (cmd.ExecuteNonQuery() != 1)
+                    {
+                        MessageBox.Show("Error changing personal info.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    MessageBox.Show("Success changing personal info.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    //this.Hide();
+                    //Form form = new Patients();
+                    //form.Show();
+                }
+            }
+        }
+
+        private string GetName()
+        {
+            using (SqlConnection connection = new SqlConnection(GetConnString()))
+            {
+                connection.Open();
+
+                string query = "SELECT Name FROM Account WHERE Username='" + SessionData.UserName + "'";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["Name"].ToString();
+                        }
+                        else
+                        {
+                            return "";
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnSavePersonal_Click(object sender, EventArgs e)
+        {
+            string username = txtUsername.Text;
+            string name = txtName.Text;
+
+            errEditAdmin.Clear();
+            Validation.ErrorCount = 0;
+            if (String.IsNullOrEmpty(username)) { errEditAdmin.SetError(lblUsername, "Should not be empty"); Validation.ErrorCount += 1; }
+            if (String.IsNullOrEmpty(name)) { errEditAdmin.SetError(lblName, "Should not be empty"); Validation.ErrorCount += 1; }
+            if (!Validation.IsFormValid()) return;
+            if (!Validation.IsValidUsername(username)) { errEditAdmin.SetError(lblUsername, "Invalid username"); Validation.ErrorCount += 1; }
+            if (!Validation.IsValidName(name)) { errEditAdmin.SetError(lblName, "Invalid name"); Validation.ErrorCount += 1; }
+            if (!Validation.IsFormValid()) return;
+
+            Validation.ErrorCount = 0;
+
+            SavePersonalInfo(SessionData.UserName, username, name);
+        }
+
+        private void Adetails_Load(object sender, EventArgs e)
+        {
+            txtUsername.Text = SessionData.UserName;
+            txtName.Text = GetName();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form form = new Patients();
+            form.Show();
         }
     }
 }

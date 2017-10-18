@@ -35,6 +35,34 @@ namespace VSMS02
             return false;
         }
 
+        public static bool IsValidUsername(string str)
+        {
+            string validChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
+            foreach (char c in str)
+            {
+                if (!validChar.Contains(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool IsValidName(string str)
+        {
+            string validChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- ,.";
+            foreach (char c in str)
+            {
+                if (!validChar.Contains(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public static bool IsValidPhoneNumber(string str)
         {
             string validChar = "0123456789-+ ";
