@@ -49,7 +49,14 @@ namespace VSMS02
         {
             if (FormClosable)
             {
-                srlPatient.Close();
+                try
+                {
+                    srlPatient.Close();
+                }
+                catch (Exception ex)
+                {
+                    Invoke(new SetToolStripDelegate(SetToolStrip), ex.Message, Color.Red);
+                }
                 System.Windows.Forms.Application.Exit();
             }
             else
@@ -66,7 +73,15 @@ namespace VSMS02
         {
             // TODO: This line of code loads data into the 'vSMSDataSet.Patient' table. You can move, or remove it, as needed.
             this.patientTableAdapter.Fill(this.vSMSDataSet.Patient);
-            //srlPatient.Open();
+            
+            try
+            {
+                srlPatient.Open();
+            }
+            catch(Exception ex)
+            {
+                Invoke(new SetToolStripDelegate(SetToolStrip), ex.Message, Color.Red);
+            }
         }
 
         public static string pid = "";
@@ -100,6 +115,8 @@ namespace VSMS02
         private void srlPatient_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             string datum = srlPatient.ReadLine();
+            //datum = datum.TrimEnd(new char[] { '\r', '\n' });
+            datum = datum.TrimEnd(System.Environment.NewLine.ToCharArray());
             Debug.Write(datum);
             string[] data = datum.Split(',');
             
@@ -125,7 +142,7 @@ namespace VSMS02
             }
 
             // Set text of status strip
-            Invoke(new SetToolStripDelegate(SetToolStrip), "[Received data] Blood pressure: " + data[0] + ", Pulse rate: " + data[1] + ", Temperature: " + data[2], Color.Black);
+            Invoke(new SetToolStripDelegate(SetToolStrip), "[Received data] Blood pressure: " + data[0] + ", Pulse rate: " + data[1] + ", Temperature: " + data[2] + ", Patient ID: " + data[3], Color.Black);
         }
 
         private delegate void SetToolStripDelegate(string text, Color color);
@@ -136,20 +153,20 @@ namespace VSMS02
             lblData.ForeColor = !(color == null) ? color : Color.Black;
         }
 
-        private void btnOpenComPort_Click(object sender, EventArgs e)
-        {
-            if (btnOpenComPort.Text.ToLower().Contains("open"))
-            {
-                srlPatient.Open();
-                Invoke(new SetToolStripDelegate(SetToolStrip), "Connected", Color.Green);
-                btnOpenComPort.Text = "Close COM port";
-            }
-            else
-            {
-                srlPatient.Close();
-                Invoke(new SetToolStripDelegate(SetToolStrip), "Connection closed", Color.Black);
-                btnOpenComPort.Text = "Open COM port";
-            }
-        }
+        //private void btnOpenComPort_Click(object sender, EventArgs e)
+        //{
+        //    if (btnOpenComPort.Text.ToLower().Contains("open"))
+        //    {
+        //        srlPatient.Open();
+        //        Invoke(new SetToolStripDelegate(SetToolStrip), "Connected", Color.Green);
+        //        btnOpenComPort.Text = "Close COM port";
+        //    }
+        //    else
+        //    {
+        //        srlPatient.Close();
+        //        Invoke(new SetToolStripDelegate(SetToolStrip), "Connection closed", Color.Black);
+        //        btnOpenComPort.Text = "Open COM port";
+        //    }
+        //}
     }
 }
