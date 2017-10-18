@@ -155,6 +155,10 @@ namespace VSMS02
                     cmd.Connection = connection;
                     cmd.Parameters.AddWithValue("@username", newUsername);
                     cmd.Parameters.AddWithValue("@name", newName);
+                    if (!SessionData.UserName.Equals(newUsername))
+                    {
+                        SessionData.UserName = newUsername;
+                    }
                     connection.Open();
 
                     if (cmd.ExecuteNonQuery() != 1)
