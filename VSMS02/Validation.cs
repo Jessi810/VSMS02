@@ -61,5 +61,11 @@ namespace VSMS02
 
             return true;
         }
+
+        public static bool IsPasswordSame(string pw1, string pw2)
+        {
+            if (pw1.Equals(pw2)) return true;
+            return false;
+        }
     }
 }
