@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -149,6 +151,164 @@ namespace VSMS02
         {
             lblData.Text = text;
             lblData.ForeColor = !(color == null) ? color : Color.Black;
+        }
+
+        private async void btnOpenTcp1_Click(object sender, EventArgs e)
+        {
+            TcpListener server = new TcpListener(IPAddress.Any, 8001);
+            server.Start();
+
+            TcpButtonSetText((Button)sender);
+
+            await Task.Run(() =>
+            {
+                DoBeginAcceptTcpClient(server);
+            });
+        }
+
+        private async void btnOpenTcp2_Click(object sender, EventArgs e)
+        {
+            TcpListener server = new TcpListener(IPAddress.Any, 8002);
+            server.Start();
+
+            TcpButtonSetText((Button)sender);
+
+            await Task.Run(() =>
+            {
+                DoBeginAcceptTcpClient(server);
+            });
+        }
+
+        private async void btnOpenTcp3_Click(object sender, EventArgs e)
+        {
+            TcpListener server = new TcpListener(IPAddress.Any, 8003);
+            server.Start();
+
+            TcpButtonSetText((Button)sender);
+
+            await Task.Run(() =>
+            {
+                DoBeginAcceptTcpClient(server);
+            });
+        }
+
+        private async void btnOpenTcp4_Click(object sender, EventArgs e)
+        {
+            TcpListener server = new TcpListener(IPAddress.Any, 8004);
+            server.Start();
+
+            TcpButtonSetText((Button)sender);
+
+            await Task.Run(() =>
+            {
+                DoBeginAcceptTcpClient(server);
+            });
+        }
+
+        private async void btnOpenTcp5_Click(object sender, EventArgs e)
+        {
+            TcpListener server = new TcpListener(IPAddress.Any, 8005);
+            server.Start();
+
+            TcpButtonSetText((Button)sender);
+
+            await Task.Run(() =>
+            {
+                DoBeginAcceptTcpClient(server);
+            });
+        }
+
+        private void TcpButtonSetText(Button btn)
+        {
+            if (btn.Text.ToLower().Contains("open"))
+            {
+                btn.Text = "Close Port";
+            }
+            else
+            {
+                btn.Text = "Open Port";
+            }
+        }
+
+        private void btnOpenAllTcp_Click(object sender, EventArgs e)
+        {
+            btnOpenTcp1.PerformClick();
+            btnOpenTcp2.PerformClick();
+            btnOpenTcp3.PerformClick();
+            btnOpenTcp4.PerformClick();
+            btnOpenTcp5.PerformClick();
+        }
+
+        private void TcpButtonsEnabled(bool b)
+        {
+            btnOpenTcp1.Enabled = b;
+            btnOpenTcp2.Enabled = b;
+            btnOpenTcp3.Enabled = b;
+            btnOpenTcp4.Enabled = b;
+            btnOpenTcp5.Enabled = b;
+        }
+
+        // Thread signal.
+        public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
+
+        // Accept one client connection asynchronously.
+        public static void DoBeginAcceptTcpClient(TcpListener listener)
+        {
+            // Set the event to nonsignaled state.
+            tcpClientConnected.Reset();
+
+            // Start to listen for connections from a client.
+            Debug.WriteLine("Waiting for connection: " + listener.LocalEndpoint);
+
+            // Accept the connection. 
+            // BeginAcceptSocket() creates the accepted socket.
+            listener.BeginAcceptTcpClient(
+                new AsyncCallback(DoAcceptTcpClientCallback),
+                listener);
+
+            // Wait until a connection is made and processed before continuing.
+            tcpClientConnected.WaitOne();
+        }
+
+        // Process the client connection.
+        public static void DoAcceptTcpClientCallback(IAsyncResult ar)
+        {
+            // Get the listener that handles the client request.
+            TcpListener listener = (TcpListener)ar.AsyncState;
+
+            // End the operation and display the received data on the console.
+            TcpClient client = listener.EndAcceptTcpClient(ar);
+
+            string clientAddress = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+            string clientPort = ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString();
+            string serverAddress = ((IPEndPoint)listener.LocalEndpoint).Address.ToString();
+            string serverPort = ((IPEndPoint)listener.LocalEndpoint).Port.ToString();
+            string clientAddressPort = clientAddress + ":" + clientPort + " >> ";
+            string serverAddressPort = serverAddress + ":" + serverPort + " >> ";
+
+            // Process the connection here. (Add the client to a server table, read data, etc.)
+            Debug.WriteLine(clientAddressPort + "Connected on port " + serverPort);
+            //---get the incoming data through a network stream---
+            NetworkStream nwStream = client.GetStream();
+            byte[] buffer = new byte[client.ReceiveBufferSize];
+            while (true)
+            {
+                //---read incoming stream---
+                int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize);
+
+                if (bytesRead <= 0)
+                {
+                    Debug.WriteLine(clientAddressPort + "Disconnected");
+                    break;
+                }
+
+                //---convert the data received into a string---
+                string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                Debug.WriteLine(clientAddressPort + dataReceived);
+            }
+
+            // Signal the calling thread to continue.
+            tcpClientConnected.Set();
         }
 
         //private void btnOpenComPort_Click(object sender, EventArgs e)

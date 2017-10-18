@@ -41,6 +41,12 @@
             this.srlPatient = new System.IO.Ports.SerialPort(this.components);
             this.stsData = new System.Windows.Forms.StatusStrip();
             this.lblData = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnOpenTcp1 = new System.Windows.Forms.Button();
+            this.btnOpenTcp2 = new System.Windows.Forms.Button();
+            this.btnOpenTcp3 = new System.Windows.Forms.Button();
+            this.btnOpenTcp4 = new System.Windows.Forms.Button();
+            this.btnOpenTcp5 = new System.Windows.Forms.Button();
+            this.btnOpenAllTcp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdPatients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).BeginInit();
@@ -134,11 +140,77 @@
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(0, 17);
             // 
+            // btnOpenTcp1
+            // 
+            this.btnOpenTcp1.Location = new System.Drawing.Point(175, 213);
+            this.btnOpenTcp1.Name = "btnOpenTcp1";
+            this.btnOpenTcp1.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenTcp1.TabIndex = 5;
+            this.btnOpenTcp1.Text = "Open Port 8001";
+            this.btnOpenTcp1.UseVisualStyleBackColor = true;
+            this.btnOpenTcp1.Click += new System.EventHandler(this.btnOpenTcp1_Click);
+            // 
+            // btnOpenTcp2
+            // 
+            this.btnOpenTcp2.Location = new System.Drawing.Point(257, 213);
+            this.btnOpenTcp2.Name = "btnOpenTcp2";
+            this.btnOpenTcp2.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenTcp2.TabIndex = 6;
+            this.btnOpenTcp2.Text = "Open Port 8002";
+            this.btnOpenTcp2.UseVisualStyleBackColor = true;
+            this.btnOpenTcp2.Click += new System.EventHandler(this.btnOpenTcp2_Click);
+            // 
+            // btnOpenTcp3
+            // 
+            this.btnOpenTcp3.Location = new System.Drawing.Point(339, 213);
+            this.btnOpenTcp3.Name = "btnOpenTcp3";
+            this.btnOpenTcp3.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenTcp3.TabIndex = 7;
+            this.btnOpenTcp3.Text = "Open Port 8003";
+            this.btnOpenTcp3.UseVisualStyleBackColor = true;
+            this.btnOpenTcp3.Click += new System.EventHandler(this.btnOpenTcp3_Click);
+            // 
+            // btnOpenTcp4
+            // 
+            this.btnOpenTcp4.Location = new System.Drawing.Point(421, 213);
+            this.btnOpenTcp4.Name = "btnOpenTcp4";
+            this.btnOpenTcp4.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenTcp4.TabIndex = 8;
+            this.btnOpenTcp4.Text = "Open Port 8004";
+            this.btnOpenTcp4.UseVisualStyleBackColor = true;
+            this.btnOpenTcp4.Click += new System.EventHandler(this.btnOpenTcp4_Click);
+            // 
+            // btnOpenTcp5
+            // 
+            this.btnOpenTcp5.Location = new System.Drawing.Point(503, 213);
+            this.btnOpenTcp5.Name = "btnOpenTcp5";
+            this.btnOpenTcp5.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenTcp5.TabIndex = 9;
+            this.btnOpenTcp5.Text = "Open Port 8005";
+            this.btnOpenTcp5.UseVisualStyleBackColor = true;
+            this.btnOpenTcp5.Click += new System.EventHandler(this.btnOpenTcp5_Click);
+            // 
+            // btnOpenAllTcp
+            // 
+            this.btnOpenAllTcp.Location = new System.Drawing.Point(503, 184);
+            this.btnOpenAllTcp.Name = "btnOpenAllTcp";
+            this.btnOpenAllTcp.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenAllTcp.TabIndex = 10;
+            this.btnOpenAllTcp.Text = "Open All Port";
+            this.btnOpenAllTcp.UseVisualStyleBackColor = true;
+            this.btnOpenAllTcp.Click += new System.EventHandler(this.btnOpenAllTcp_Click);
+            // 
             // Patients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 261);
+            this.Controls.Add(this.btnOpenAllTcp);
+            this.Controls.Add(this.btnOpenTcp5);
+            this.Controls.Add(this.btnOpenTcp4);
+            this.Controls.Add(this.btnOpenTcp3);
+            this.Controls.Add(this.btnOpenTcp2);
+            this.Controls.Add(this.btnOpenTcp1);
             this.Controls.Add(this.stsData);
             this.Controls.Add(this.grdPatients);
             this.Controls.Add(this.btnDetails);
@@ -171,5 +243,11 @@
         private System.IO.Ports.SerialPort srlPatient;
         private System.Windows.Forms.StatusStrip stsData;
         private System.Windows.Forms.ToolStripStatusLabel lblData;
+        private System.Windows.Forms.Button btnOpenTcp1;
+        private System.Windows.Forms.Button btnOpenTcp2;
+        private System.Windows.Forms.Button btnOpenTcp3;
+        private System.Windows.Forms.Button btnOpenTcp4;
+        private System.Windows.Forms.Button btnOpenTcp5;
+        private System.Windows.Forms.Button btnOpenAllTcp;
     }
 }
