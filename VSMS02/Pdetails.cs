@@ -30,7 +30,6 @@ namespace VSMS02
                 connection.Open();
 
                 string query = "SELECT * FROM Patient WHERE Id=" + pid;
-                Debug.WriteLine("QUERY: " + query);
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -63,7 +62,6 @@ namespace VSMS02
                 connection.Open();
 
                 string query = "SELECT * FROM Patient WHERE Id=" + pid;
-                Debug.WriteLine("QUERY: " + query);
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {

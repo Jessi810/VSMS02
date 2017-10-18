@@ -100,7 +100,6 @@ namespace VSMS02
                     {
                         // Get patient ID
                         pid = grdPatients.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        Debug.WriteLine("Pid: " + pid);
 
                         //var t = new Thread(() => Application.Run(new Pdetails()));
                         //t.Start();
@@ -117,7 +116,6 @@ namespace VSMS02
             string datum = srlPatient.ReadLine();
             //datum = datum.TrimEnd(new char[] { '\r', '\n' });
             datum = datum.TrimEnd(System.Environment.NewLine.ToCharArray());
-            Debug.Write(datum);
             string[] data = datum.Split(',');
             
             string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;

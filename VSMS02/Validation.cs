@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,8 +65,7 @@ namespace VSMS02
 
         public static bool IsPasswordSame(string pw1, string pw2)
         {
-            if (pw1.Equals(pw2)) return true;
-            return false;
+            return pw1.Equals(pw2) ? true : false;
         }
     }
 }

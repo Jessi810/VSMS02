@@ -53,14 +53,12 @@ namespace VSMS02
                         if (reader.Read())
                         {
                             hashKey = reader["HashKey"].ToString();
-                            Debug.WriteLine("Hash Key: " + hashKey);
                         }
                     }
                 }
             }
 
             var hash = Encryptor.EncodePassword(password, hashKey);
-            Debug.WriteLine("Decoded Hash: " + hash);
 
             // Decode password
             using (SqlConnection connection = new SqlConnection(connString2))
@@ -82,7 +80,6 @@ namespace VSMS02
                             MessageBox.Show("Error. Please try again later or contact an admin.", "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        Debug.WriteLine("Password Hash: " + passwordHash);
                     }
                 }
             }
@@ -95,6 +92,9 @@ namespace VSMS02
 
             MessageBox.Show("You've been login successfully!", "Login Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             // If reached, all success
+
+            SessionData.UserName = username;
+
             this.Hide();
             Form form = new Patients();
             form.Show();

@@ -114,6 +114,7 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="SessionData.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="VSMSDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

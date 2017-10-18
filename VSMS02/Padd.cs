@@ -59,7 +59,6 @@ namespace VSMS02
 
             if (!Validation.IsFormValid())
             {
-                Debug.WriteLine("INVALID FORM : ERROR COUNT " + Validation.ErrorCount);
                 return;
             }
 
