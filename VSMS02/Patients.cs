@@ -258,7 +258,9 @@ namespace VSMS02
             tcpClientConnected.Reset();
 
             // Start to listen for connections from a client.
-            Debug.WriteLine("Waiting for connection: " + listener.LocalEndpoint);
+            string serverAddress = ((IPEndPoint)listener.LocalEndpoint).Address.ToString();
+            string serverPort = ((IPEndPoint)listener.LocalEndpoint).Port.ToString();
+            Debug.WriteLine(serverPort + "> Waiting for connection");
 
             // Accept the connection. 
             // BeginAcceptSocket() creates the accepted socket.
@@ -283,11 +285,11 @@ namespace VSMS02
             string clientPort = ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString();
             string serverAddress = ((IPEndPoint)listener.LocalEndpoint).Address.ToString();
             string serverPort = ((IPEndPoint)listener.LocalEndpoint).Port.ToString();
-            string clientAddressPort = clientAddress + ":" + clientPort + " >> ";
-            string serverAddressPort = serverAddress + ":" + serverPort + " >> ";
+            string clientAddressPort = clientAddress + ":" + clientPort;
+            string serverAddressPort = serverAddress + ":" + serverPort;
 
             // Process the connection here. (Add the client to a server table, read data, etc.)
-            Debug.WriteLine(clientAddressPort + "Connected on port " + serverPort);
+            Debug.WriteLine(serverPort + "> Client connected [" + clientAddressPort + "]");
             //---get the incoming data through a network stream---
             NetworkStream nwStream = client.GetStream();
             byte[] buffer = new byte[client.ReceiveBufferSize];
@@ -298,13 +300,13 @@ namespace VSMS02
 
                 if (bytesRead <= 0)
                 {
-                    Debug.WriteLine(clientAddressPort + "Disconnected");
+                    Debug.WriteLine(serverPort + "> Client disconnected [" + clientAddressPort + "]");
                     break;
                 }
 
                 //---convert the data received into a string---
                 string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                Debug.WriteLine(clientAddressPort + dataReceived);
+                Debug.WriteLine(serverPort + "> " + dataReceived);
             }
 
             // Signal the calling thread to continue.
