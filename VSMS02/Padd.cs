@@ -20,8 +20,19 @@ namespace VSMS02
             InitializeComponent();
         }
 
+        private Patients patientsForm = null;
+        public Padd(Form callingForm)
+        {
+            patientsForm = callingForm as Patients;
+            this.patientsForm.Enabled = false;
+
+            InitializeComponent();
+        }
+
         private void Padd_FormClosing(object sender, FormClosingEventArgs e)
         {
+            this.patientsForm.Enabled = true;
+            this.patientsForm.FormClosable = false;
             System.Windows.Forms.Application.Exit();
         }
 

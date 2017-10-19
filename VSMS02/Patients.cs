@@ -35,15 +35,13 @@ namespace VSMS02
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form form = new Padd();
+            Form form = new Padd(this);
             form.Show();
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form form = new Adetails();
+            Form form = new Adetails(this);
             form.Show();
         }
 

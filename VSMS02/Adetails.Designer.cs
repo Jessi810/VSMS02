@@ -43,7 +43,6 @@
             this.lblCurrentPassword = new System.Windows.Forms.Label();
             this.lblNewPassword = new System.Windows.Forms.Label();
             this.txtCurrentPassword = new System.Windows.Forms.TextBox();
-            this.btnBack = new System.Windows.Forms.Button();
             this.errEditAdmin = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -180,16 +179,6 @@
             this.txtCurrentPassword.Size = new System.Drawing.Size(140, 20);
             this.txtCurrentPassword.TabIndex = 1;
             // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(12, 287);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(136, 23);
-            this.btnBack.TabIndex = 8;
-            this.btnBack.Text = "Go back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // errEditAdmin
             // 
             this.errEditAdmin.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
@@ -200,7 +189,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(341, 322);
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Adetails";
@@ -232,7 +220,6 @@
         private System.Windows.Forms.Label lblCurrentPassword;
         private System.Windows.Forms.Label lblNewPassword;
         private System.Windows.Forms.TextBox txtCurrentPassword;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.ErrorProvider errEditAdmin;
     }
 }

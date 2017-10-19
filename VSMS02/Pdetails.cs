@@ -134,7 +134,7 @@ namespace VSMS02
             GetData("SELECT * FROM Data WHERE Patient_Id=" + pid);
 
             // Hide last column (Patient_Id)
-            this.grdData.Columns[0].Visible = false;
+            this.grdData.Columns[5].Visible = false;
 
             PatientModel pm = new PatientModel();
             pm = GetPatientData();

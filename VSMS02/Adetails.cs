@@ -20,8 +20,19 @@ namespace VSMS02
             InitializeComponent();
         }
 
+        private Patients patientsForm = null;
+        public Adetails(Form callingForm)
+        {
+            patientsForm = callingForm as Patients;
+            this.patientsForm.Enabled = false;
+
+            InitializeComponent();
+        }
+
         private void Adetails_FormClosing(object sender, FormClosingEventArgs e)
         {
+            this.patientsForm.Enabled = true;
+            this.patientsForm.FormClosable = false;
             System.Windows.Forms.Application.Exit();
         }
 
