@@ -171,7 +171,7 @@ namespace VSMS02
 
                 await Task.Run(() =>
                 {
-                    DoBeginAcceptTcpClient(server);
+                    DoBeginAcceptTcpClient(server, (Button) sender);
                 });
             }
             else
@@ -193,7 +193,7 @@ namespace VSMS02
 
                 await Task.Run(() =>
                 {
-                    DoBeginAcceptTcpClient(server);
+                    DoBeginAcceptTcpClient(server, (Button)sender);
                 });
             }
             else
@@ -215,7 +215,7 @@ namespace VSMS02
 
                 await Task.Run(() =>
                 {
-                    DoBeginAcceptTcpClient(server);
+                    DoBeginAcceptTcpClient(server, (Button)sender);
                 });
             }
             else
@@ -237,7 +237,7 @@ namespace VSMS02
 
                 await Task.Run(() =>
                 {
-                    DoBeginAcceptTcpClient(server);
+                    DoBeginAcceptTcpClient(server, (Button)sender);
                 });
             }
             else
@@ -267,7 +267,7 @@ namespace VSMS02
 
                 await Task.Run(() =>
                 {
-                    DoBeginAcceptTcpClient(server);
+                    DoBeginAcceptTcpClient(server, (Button)sender);
                 });
             }
             else
@@ -287,15 +287,15 @@ namespace VSMS02
             btnOpenTcp5.PerformClick();
         }
 
-        private void TcpButtonSetText(Button btn)
+        private static void TcpButtonSetText(Button btn)
         {
             if (btn.Text.ToLower().Contains("open"))
             {
-                btn.Text = "Close Port";
+                btn.Text = btn.Text.ToLower().Replace("open", "Close");
             }
             else
             {
-                btn.Text = "Open Port";
+                btn.Text = btn.Text.ToLower().Replace("close", "Open");
             }
         }
 
@@ -322,7 +322,7 @@ namespace VSMS02
         public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
 
         // Accept one client connection asynchronously.
-        public static void DoBeginAcceptTcpClient(TcpListener listener)
+        public static void DoBeginAcceptTcpClient(TcpListener listener, Button btn)
         {
             // Set the event to nonsignaled state.
             tcpClientConnected.Reset();
@@ -336,7 +336,7 @@ namespace VSMS02
             // BeginAcceptSocket() creates the accepted socket.
             listener.BeginAcceptTcpClient(
                 new AsyncCallback(DoAcceptTcpClientCallback),
-                listener);
+                Tuple.Create(listener, btn));
 
             // Wait until a connection is made and processed before continuing.
             tcpClientConnected.WaitOne();
@@ -345,8 +345,11 @@ namespace VSMS02
         // Process the client connection.
         public static void DoAcceptTcpClientCallback(IAsyncResult ar)
         {
+            Tuple<TcpListener, Button> state = (Tuple<TcpListener, Button>) ar.AsyncState;
+            Button tcpButton = state.Item2;
+
             // Get the listener that handles the client request.
-            TcpListener listener = (TcpListener)ar.AsyncState;
+            TcpListener listener = (TcpListener)state.Item1;
 
             // End the operation and display the received data on the console.
             using (TcpClient client = listener.EndAcceptTcpClient(ar))
@@ -372,10 +375,11 @@ namespace VSMS02
 
                         if (bytesRead <= 0)
                         {
-                            Debug.WriteLine(serverPort + "> Client disconnected [" + clientAddressPort + "]");
+                            TcpButtonSetText(tcpButton);
                             client.Client.Disconnect(true);
                             listener.Server.Dispose();
                             client.Client.Dispose();
+                            Debug.WriteLine(serverPort + "> Client disconnected [" + clientAddressPort + "]");
                             break;
                         }
 
