@@ -62,6 +62,7 @@
             this.btnOpenAllTcp = new System.Windows.Forms.Button();
             this.patientTableAdapter1 = new VSMS02.VSMSDataSetPatientTableAdapters.PatientTableAdapter();
             this.txtTcpLog = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdPatients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSetPatient)).BeginInit();
@@ -327,17 +328,27 @@
             // txtTcpLog
             // 
             this.txtTcpLog.Enabled = false;
-            this.txtTcpLog.Location = new System.Drawing.Point(606, 8);
+            this.txtTcpLog.Location = new System.Drawing.Point(606, 27);
             this.txtTcpLog.Multiline = true;
             this.txtTcpLog.Name = "txtTcpLog";
-            this.txtTcpLog.Size = new System.Drawing.Size(291, 199);
+            this.txtTcpLog.Size = new System.Drawing.Size(291, 180);
             this.txtTcpLog.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(606, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "TCP Listeners Log:";
             // 
             // Patients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 261);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTcpLog);
             this.Controls.Add(this.btnOpenAllTcp);
             this.Controls.Add(this.btnOpenTcp5);
@@ -400,5 +411,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DateAdmitted;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateDischarged;
         private System.Windows.Forms.TextBox txtTcpLog;
+        private System.Windows.Forms.Label label1;
     }
 }
