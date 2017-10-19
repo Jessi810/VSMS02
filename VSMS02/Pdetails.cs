@@ -205,6 +205,63 @@ namespace VSMS02
             string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
             string dbDir = projDir + "\\VSMS.mdf";
             string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dbDir + ";Integrated Security=True";
+
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                string query = "UPDATE Patient "
+                    + "SET FirstName=@firstName, MiddleName=@middleName, LastName=@lastName, "
+                    + "    BirthDate=@birthDate, Address=@address, Gender=@gender, Age=@age, "
+                    + "    PhoneNumber=@phoneNumber, TelephoneNumber=@telephoneNumber, ContactName=@contactname, "
+                    + "    PhilhealthNumber=@philhealthNumber, DateAdmitted=@dateAdmitted, DateDischarged=@dateDischarged "
+                    + "WHERE Id='" + pid + "'";
+                Debug.WriteLine("ID: " + pid);
+                Debug.WriteLine("QUERY: " + query);
+
+                string firstName = txtFirstName.Text;
+                string middleName = txtMiddleName.Text;
+                string lastName = txtLastName.Text;
+                DateTime birthDate = dteBirthDate.Value;
+                string address = txtAddress.Text;
+                string gender = cboGender.Text;
+                int age = Int32.Parse(txtAge.Text);
+                string phoneNumber = txtPhoneNumber.Text;
+                string telephoneNumber = txtTelephoneNumber.Text;
+                string contactName = txtContactName.Text;
+                string philhealthNumber = txtPhilhealthNumber.Text;
+                DateTime dataAdmitted = dteDateAdmitted.Value;
+                DateTime dateDischarged = dteDateDischarged.Value;
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Connection = connection;
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@middleName", middleName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@birthDate", birthDate);
+                    cmd.Parameters.AddWithValue("@address", address);
+                    cmd.Parameters.AddWithValue("@gender", gender);
+                    cmd.Parameters.AddWithValue("@age", age);
+                    cmd.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                    cmd.Parameters.AddWithValue("@telephoneNumber", telephoneNumber);
+                    cmd.Parameters.AddWithValue("@contactName", contactName);
+                    cmd.Parameters.AddWithValue("@philhealthNumber", philhealthNumber);
+                    cmd.Parameters.AddWithValue("@dateAdmitted", dataAdmitted);
+                    cmd.Parameters.AddWithValue("@dateDischarged", dateDischarged);
+                    connection.Open();
+
+                    if (cmd.ExecuteNonQuery() != 1)
+                    {
+                        MessageBox.Show("Error editing patient.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    MessageBox.Show("Success editing patient.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    //this.Hide();
+                    //Form form = new Patients();
+                    //form.Show();
+                }
+            }
         }
     }
 }
