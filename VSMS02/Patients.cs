@@ -66,7 +66,7 @@ namespace VSMS02
                 e.Cancel = true;
                 FormClosable = true;
             }
-            
+
             //System.Windows.Forms.Application.Exit();
             //srlPatient.Close();
         }
@@ -77,12 +77,15 @@ namespace VSMS02
             this.patientTableAdapter1.Fill(this.vSMSDataSetPatient.Patient);
             // TODO: This line of code loads data into the 'vSMSDataSet.Patient' table. You can move, or remove it, as needed.
             this.patientTableAdapter.Fill(this.vSMSDataSet.Patient);
-            
+
+            // TODO: REMOVED IF TCP IS FIXED
+            btnOpenAllTcp.PerformClick();
+
             try
             {
                 srlPatient.Open();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Invoke(new SetToolStripDelegate(SetToolStrip), ex.Message, Color.Red);
             }
@@ -123,11 +126,11 @@ namespace VSMS02
             //datum = datum.TrimEnd(new char[] { '\r', '\n' });
             datum = datum.TrimEnd(System.Environment.NewLine.ToCharArray());
             string[] data = datum.Split(',');
-            
+
             string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
             string dbDir = projDir + "\\VSMS.mdf";
             string connString2 = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dbDir + ";Integrated Security=True";
-            
+
             using (SqlConnection connection = new SqlConnection(connString2))
             {
                 string query = "INSERT into Data (Timestamp,BloodPressure,PulseRate,Temperature,Patient_Id) VALUES (@timestamp,@bloodPressure,@pulseRate,@temperature,@patient_id)";
@@ -160,14 +163,23 @@ namespace VSMS02
         private async void btnOpenTcp1_Click(object sender, EventArgs e)
         {
             TcpListener server = new TcpListener(IPAddress.Any, 8001);
-            server.Start();
-
-            TcpButtonSetText((Button)sender);
-
-            await Task.Run(() =>
+            if (IsTcpButtonOpen((Button)sender))
             {
-                DoBeginAcceptTcpClient(server);
-            });
+                server.Start();
+
+                TcpButtonSetText((Button)sender);
+
+                await Task.Run(() =>
+                {
+                    DoBeginAcceptTcpClient(server);
+                });
+            }
+            else
+            {
+                server.Server.Dispose();
+
+                TcpButtonSetText((Button)sender);
+            }
         }
 
         private async void btnOpenTcp2_Click(object sender, EventArgs e)
@@ -222,6 +234,15 @@ namespace VSMS02
             });
         }
 
+        private void btnOpenAllTcp_Click(object sender, EventArgs e)
+        {
+            btnOpenTcp1.PerformClick();
+            btnOpenTcp2.PerformClick();
+            btnOpenTcp3.PerformClick();
+            btnOpenTcp4.PerformClick();
+            btnOpenTcp5.PerformClick();
+        }
+
         private void TcpButtonSetText(Button btn)
         {
             if (btn.Text.ToLower().Contains("open"))
@@ -234,15 +255,6 @@ namespace VSMS02
             }
         }
 
-        private void btnOpenAllTcp_Click(object sender, EventArgs e)
-        {
-            btnOpenTcp1.PerformClick();
-            btnOpenTcp2.PerformClick();
-            btnOpenTcp3.PerformClick();
-            btnOpenTcp4.PerformClick();
-            btnOpenTcp5.PerformClick();
-        }
-
         private void TcpButtonsEnabled(bool b)
         {
             btnOpenTcp1.Enabled = b;
@@ -250,6 +262,16 @@ namespace VSMS02
             btnOpenTcp3.Enabled = b;
             btnOpenTcp4.Enabled = b;
             btnOpenTcp5.Enabled = b;
+        }
+
+        private bool IsTcpButtonOpen(Button btn)
+        {
+            if (btn.Text.ToLower().Contains("open"))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         // Thread signal.
@@ -283,64 +305,71 @@ namespace VSMS02
             TcpListener listener = (TcpListener)ar.AsyncState;
 
             // End the operation and display the received data on the console.
-            TcpClient client = listener.EndAcceptTcpClient(ar);
-
-            string clientAddress = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
-            string clientPort = ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString();
-            string serverAddress = ((IPEndPoint)listener.LocalEndpoint).Address.ToString();
-            string serverPort = ((IPEndPoint)listener.LocalEndpoint).Port.ToString();
-            string clientAddressPort = clientAddress + ":" + clientPort;
-            string serverAddressPort = serverAddress + ":" + serverPort;
-
-            // Process the connection here. (Add the client to a server table, read data, etc.)
-            Debug.WriteLine(serverPort + "> Client connected [" + clientAddressPort + "]");
-            //---get the incoming data through a network stream---
-            NetworkStream nwStream = client.GetStream();
-            byte[] buffer = new byte[client.ReceiveBufferSize];
-            while (true)
+            using (TcpClient client = listener.EndAcceptTcpClient(ar))
             {
-                //---read incoming stream---
-                int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize);
+                string clientAddress = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString();
+                string clientPort = ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString();
+                string serverAddress = ((IPEndPoint)listener.LocalEndpoint).Address.ToString();
+                string serverPort = ((IPEndPoint)listener.LocalEndpoint).Port.ToString();
+                string clientAddressPort = clientAddress + ":" + clientPort;
+                string serverAddressPort = serverAddress + ":" + serverPort;
 
-                if (bytesRead <= 0)
+                // Process the connection here. (Add the client to a server table, read data, etc.)
+                Debug.WriteLine(serverPort + "> Client connected [" + clientAddressPort + "]");
+                //---get the incoming data through a network stream---
+                using (NetworkStream nwStream = client.GetStream())
                 {
-                    Debug.WriteLine(serverPort + "> Client disconnected [" + clientAddressPort + "]");
-                    break;
-                }
+                    byte[] buffer = new byte[client.ReceiveBufferSize];
 
-                //---convert the data received into a string---
-                string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                dataReceived = dataReceived.TrimEnd(System.Environment.NewLine.ToCharArray());
-
-                string[] data = dataReceived.Split(',');
-
-                string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
-                string dbDir = projDir + "\\VSMS.mdf";
-                string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dbDir + ";Integrated Security=True";
-
-                Debug.WriteLine("Time " + data[0]);
-                Debug.WriteLine("BP   " + data[1]);
-                Debug.WriteLine("PR   " + data[2]);
-                Debug.WriteLine("Temp " + data[3]);
-
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    string query = "INSERT into Data (Timestamp,BloodPressure,PulseRate,Temperature,Patient_Id) VALUES (@timestamp,@bloodPressure,@pulseRate,@temperature,@patient_id)";
-
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    while (true)
                     {
-                        cmd.Connection = connection;
-                        cmd.Parameters.Add("@timestamp", SqlDbType.DateTime, 50).Value = DateTime.Now;
-                        cmd.Parameters.Add("@bloodPressure", SqlDbType.NVarChar, 50).Value = data[0];
-                        cmd.Parameters.Add("@pulseRate", SqlDbType.NVarChar, 50).Value = data[1];
-                        cmd.Parameters.Add("@temperature", SqlDbType.NVarChar, 50).Value = data[2];
-                        cmd.Parameters.Add("@patient_id", SqlDbType.Int, 50).Value = data[3];
-                        connection.Open();
-                        cmd.ExecuteNonQuery();
+                        //---read incoming stream---
+                        int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize);
+
+                        if (bytesRead <= 0)
+                        {
+                            Debug.WriteLine(serverPort + "> Client disconnected [" + clientAddressPort + "]");
+                            //client.Client.Disconnect(true);
+                            //listener.Server.Dispose();
+                            //client.Client.Dispose();
+                            break;
+                        }
+
+                        //---convert the data received into a string---
+                        string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                        dataReceived = dataReceived.TrimEnd(System.Environment.NewLine.ToCharArray());
+
+                        string[] data = dataReceived.Split(',');
+
+                        string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
+                        string dbDir = projDir + "\\VSMS.mdf";
+                        string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dbDir + ";Integrated Security=True";
+
+                        Debug.WriteLine("Time " + data[0]);
+                        Debug.WriteLine("BP   " + data[1]);
+                        Debug.WriteLine("PR   " + data[2]);
+                        Debug.WriteLine("Temp " + data[3]);
+
+                        using (SqlConnection connection = new SqlConnection(connString))
+                        {
+                            string query = "INSERT into Data (Timestamp,BloodPressure,PulseRate,Temperature,Patient_Id) VALUES (@timestamp,@bloodPressure,@pulseRate,@temperature,@patient_id)";
+
+                            using (SqlCommand cmd = new SqlCommand(query, connection))
+                            {
+                                cmd.Connection = connection;
+                                cmd.Parameters.Add("@timestamp", SqlDbType.DateTime, 50).Value = DateTime.Now;
+                                cmd.Parameters.Add("@bloodPressure", SqlDbType.NVarChar, 50).Value = data[0];
+                                cmd.Parameters.Add("@pulseRate", SqlDbType.NVarChar, 50).Value = data[1];
+                                cmd.Parameters.Add("@temperature", SqlDbType.NVarChar, 50).Value = data[2];
+                                cmd.Parameters.Add("@patient_id", SqlDbType.Int, 50).Value = data[3];
+                                connection.Open();
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        Debug.WriteLine(serverPort + "> " + dataReceived);
                     }
                 }
-
-                Debug.WriteLine(serverPort + "> " + dataReceived);
             }
 
             // Signal the calling thread to continue.
