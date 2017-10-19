@@ -153,11 +153,25 @@ namespace VSMS02
         }
 
         private delegate void SetToolStripDelegate(string text, Color color);
+        private delegate void SetTextDelegate(Button btn, string text);
 
         private void SetToolStrip(string text, Color color)
         {
             lblData.Text = text;
             lblData.ForeColor = !(color == null) ? color : Color.Black;
+        }
+
+        private static void SetTextTcp(Button btn, string text)
+        {
+            if (btn.Text.ToLower().Contains("open"))
+            {
+                btn.Text = btn.Text.ToLower().Replace("open", "Close");
+            }
+            else
+            {
+                btn.Text = btn.Text.ToLower().Replace("close", "Open");
+            }
+            //btn.Text = btn.Text.ToLower().Replace("close", "Open");
         }
 
         private async void btnOpenTcp1_Click(object sender, EventArgs e)
@@ -287,15 +301,36 @@ namespace VSMS02
             btnOpenTcp5.PerformClick();
         }
 
+        delegate void SetTextCallback(string text);
+        private BackgroundWorker backgroundWorker;
         private static void TcpButtonSetText(Button btn)
         {
             if (btn.Text.ToLower().Contains("open"))
             {
-                btn.Text = btn.Text.ToLower().Replace("open", "Close");
+                if (btn.InvokeRequired)
+                {
+                    SetTextDelegate d = new SetTextDelegate(SetTextTcp);
+                    btn.Invoke(d, new object[] { btn, "Close" });
+                }
+                else
+                {
+                    btn.Text = btn.Text.ToLower().Replace("open", "Close");
+                }
+                //btn.Text = btn.Text.ToLower().Replace("open", "Close");
             }
             else
             {
-                btn.Text = btn.Text.ToLower().Replace("close", "Open");
+                if (btn.InvokeRequired)
+                {
+                    SetTextDelegate d = new SetTextDelegate(SetTextTcp);
+                    btn.Invoke(d, new object[] { btn, "Open" });
+                }
+                else
+                {
+                    btn.Text = btn.Text.ToLower().Replace("close", "Open");
+                }
+
+                //btn.Text = btn.Text.ToLower().Replace("close", "Open");
             }
         }
 
