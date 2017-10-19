@@ -154,6 +154,7 @@ namespace VSMS02
 
         private delegate void SetToolStripDelegate(string text, Color color);
         private delegate void SetTextDelegate(Button btn, string text);
+        private delegate void SetButtonClickDelegate(Button btn);
 
         private void SetToolStrip(string text, Color color)
         {
@@ -172,6 +173,11 @@ namespace VSMS02
                 btn.Text = btn.Text.ToLower().Replace("close", "Open");
             }
             //btn.Text = btn.Text.ToLower().Replace("close", "Open");
+        }
+
+        private static void SetButtonClick(Button btn)
+        {
+            btn.PerformClick();
         }
 
         private async void btnOpenTcp1_Click(object sender, EventArgs e)
@@ -452,6 +458,16 @@ namespace VSMS02
 
                         Debug.WriteLine(serverPort + "> " + dataReceived);
                     }
+                }
+
+                if (tcpButton.InvokeRequired)
+                {
+                    SetButtonClickDelegate d = new SetButtonClickDelegate(SetButtonClick);
+                    tcpButton.Invoke(d, tcpButton);
+                }
+                else
+                {
+                    tcpButton.PerformClick();
                 }
             }
 
