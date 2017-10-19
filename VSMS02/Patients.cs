@@ -156,11 +156,17 @@ namespace VSMS02
         private delegate void SetToolStripDelegate(string text, Color color);
         private delegate void SetTextDelegate(Button btn, string text);
         private delegate void SetButtonClickDelegate(Button btn);
+        private delegate void SetTextTcpLogDelegate(string text);
 
         private static void SetToolStrip(string text, Color color)
         {
             p.lblData.Text = text;
             p.lblData.ForeColor = !(color == null) ? color : Color.Black;
+        }
+
+        private static void SetTextTcpLog(string str)
+        {
+            p.txtTcpLog.Text += str + "\r\n";
         }
 
         private static void SetTextTcp(Button btn, string text)
@@ -373,7 +379,7 @@ namespace VSMS02
             string serverAddress = ((IPEndPoint)listener.LocalEndpoint).Address.ToString();
             string serverPort = ((IPEndPoint)listener.LocalEndpoint).Port.ToString();
             Debug.WriteLine(serverPort + "> Waiting for connection");
-            p.Invoke(new SetToolStripDelegate(SetToolStrip), serverPort + "> Waiting for connection", Color.Black);
+            p.Invoke(new SetTextTcpLogDelegate(SetTextTcpLog), serverPort + "> Waiting for connection");
 
             // Accept the connection. 
             // BeginAcceptSocket() creates the accepted socket.
@@ -406,7 +412,7 @@ namespace VSMS02
 
                 // Process the connection here. (Add the client to a server table, read data, etc.)
                 Debug.WriteLine(serverPort + "> Client connected [" + clientAddressPort + "]");
-                p.Invoke(new SetToolStripDelegate(SetToolStrip), serverPort + "> Client connected [" + clientAddressPort + "]", Color.Black);
+                p.Invoke(new SetTextTcpLogDelegate(SetTextTcpLog), serverPort + "> Client connected [" + clientAddressPort + "]");
                 //---get the incoming data through a network stream---
                 using (NetworkStream nwStream = client.GetStream())
                 {
@@ -424,7 +430,7 @@ namespace VSMS02
                             listener.Server.Dispose();
                             client.Client.Dispose();
                             Debug.WriteLine(serverPort + "> Client disconnected [" + clientAddressPort + "]");
-                            p.Invoke(new SetToolStripDelegate(SetToolStrip), serverPort + "> Client disconnected [" + clientAddressPort + "]", Color.Black);
+                            p.Invoke(new SetTextTcpLogDelegate(SetTextTcpLog), serverPort + "> Client disconnected [" + clientAddressPort + "]");
 
                             break;
                         }
@@ -462,7 +468,7 @@ namespace VSMS02
                         }
 
                         Debug.WriteLine(serverPort + "> " + dataReceived);
-                        p.Invoke(new SetToolStripDelegate(SetToolStrip), serverPort + "> " + dataReceived, Color.Black);
+                        p.Invoke(new SetTextTcpLogDelegate(SetTextTcpLog), serverPort + "> " + dataReceived);
                     }
                 }
 

@@ -61,6 +61,7 @@
             this.btnOpenTcp5 = new System.Windows.Forms.Button();
             this.btnOpenAllTcp = new System.Windows.Forms.Button();
             this.patientTableAdapter1 = new VSMS02.VSMSDataSetPatientTableAdapters.PatientTableAdapter();
+            this.txtTcpLog = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdPatients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSetPatient)).BeginInit();
@@ -251,7 +252,7 @@
             this.lblData});
             this.stsData.Location = new System.Drawing.Point(0, 239);
             this.stsData.Name = "stsData";
-            this.stsData.Size = new System.Drawing.Size(589, 22);
+            this.stsData.Size = new System.Drawing.Size(909, 22);
             this.stsData.TabIndex = 4;
             // 
             // lblData
@@ -323,11 +324,21 @@
             // 
             this.patientTableAdapter1.ClearBeforeFill = true;
             // 
+            // txtTcpLog
+            // 
+            this.txtTcpLog.Enabled = false;
+            this.txtTcpLog.Location = new System.Drawing.Point(606, 8);
+            this.txtTcpLog.Multiline = true;
+            this.txtTcpLog.Name = "txtTcpLog";
+            this.txtTcpLog.Size = new System.Drawing.Size(291, 199);
+            this.txtTcpLog.TabIndex = 11;
+            // 
             // Patients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 261);
+            this.ClientSize = new System.Drawing.Size(909, 261);
+            this.Controls.Add(this.txtTcpLog);
             this.Controls.Add(this.btnOpenAllTcp);
             this.Controls.Add(this.btnOpenTcp5);
             this.Controls.Add(this.btnOpenTcp4);
@@ -388,5 +399,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PhilhealthNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateAdmitted;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateDischarged;
+        private System.Windows.Forms.TextBox txtTcpLog;
     }
 }
