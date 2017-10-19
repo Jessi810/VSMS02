@@ -52,7 +52,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtPhilhealthNumber = new System.Windows.Forms.TextBox();
             this.lblPhilhealthNumber = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.errAddPatient = new System.Windows.Forms.ErrorProvider(this.components);
@@ -249,16 +248,6 @@
             this.lblPhilhealthNumber.TabIndex = 23;
             this.lblPhilhealthNumber.Text = "PhilHealth number";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(131, 297);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(114, 23);
-            this.btnCancel.TabIndex = 25;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(158, 175);
@@ -288,7 +277,6 @@
             this.ClientSize = new System.Drawing.Size(460, 332);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.lblAddress);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtPhilhealthNumber);
             this.Controls.Add(this.lblPhilhealthNumber);
             this.Controls.Add(this.btnAdd);
@@ -347,7 +335,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtPhilhealthNumber;
         private System.Windows.Forms.Label lblPhilhealthNumber;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.ErrorProvider errAddPatient;

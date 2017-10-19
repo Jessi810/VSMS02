@@ -103,9 +103,9 @@ namespace VSMS02
                         MessageBox.Show("Error adding patient.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     MessageBox.Show("Success adding patient.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Hide();
-                    Form form = new Patients();
-                    form.Show();
+                    //this.Hide();
+                    //Form form = new Patients();
+                    //form.Show();
                 }
             }
         }
