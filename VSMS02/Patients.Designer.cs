@@ -111,10 +111,10 @@
             this.DateAdmitted,
             this.DateDischarged});
             this.grdPatients.DataSource = this.patientBindingSource1;
-            this.grdPatients.Location = new System.Drawing.Point(13, 13);
+            this.grdPatients.Location = new System.Drawing.Point(12, 8);
             this.grdPatients.Name = "grdPatients";
             this.grdPatients.ReadOnly = true;
-            this.grdPatients.Size = new System.Drawing.Size(564, 194);
+            this.grdPatients.Size = new System.Drawing.Size(565, 199);
             this.grdPatients.TabIndex = 2;
             this.grdPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPatients_CellClick);
             // 

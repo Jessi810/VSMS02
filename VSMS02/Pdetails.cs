@@ -189,8 +189,18 @@ namespace VSMS02
                             pm.ContactName = reader["ContactName"].ToString();
                             pm.PhilhealthNumber = reader["PhilhealthNumber"].ToString();
                             pm.DateAdmitted = (DateTime)reader["DateAdmitted"];
-                            pm.DateDischarged = (DateTime)reader["DateDischarged"];
 
+                            // Check first if date discharged is not null or empty
+                            if (String.IsNullOrEmpty(reader["DateDischarged"].ToString()))
+                            {
+                                pm.DateDischarged = DateTime.Now;
+                            }
+                            else
+                            {
+                                pm.DateDischarged = (DateTime)reader["DateDischarged"];
+                                btnSetDateDischarged.Visible = false;
+                            }
+                            
                             return pm;
                         }
                     }
@@ -283,6 +293,11 @@ namespace VSMS02
                     //form.Show();
                 }
             }
+        }
+
+        private void btnSetDateDischarged_Click(object sender, EventArgs e)
+        {
+            btnSetDateDischarged.Visible = false;
         }
     }
 }

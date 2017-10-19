@@ -61,6 +61,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btnSaveChanges = new System.Windows.Forms.Button();
             this.errEditPatient = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnSetDateDischarged = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errEditPatient)).BeginInit();
             this.SuspendLayout();
@@ -339,11 +340,22 @@
             this.errEditPatient.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errEditPatient.ContainerControl = this;
             // 
+            // btnSetDateDischarged
+            // 
+            this.btnSetDateDischarged.Location = new System.Drawing.Point(142, 353);
+            this.btnSetDateDischarged.Name = "btnSetDateDischarged";
+            this.btnSetDateDischarged.Size = new System.Drawing.Size(200, 23);
+            this.btnSetDateDischarged.TabIndex = 33;
+            this.btnSetDateDischarged.Text = "Set Date";
+            this.btnSetDateDischarged.UseVisualStyleBackColor = true;
+            this.btnSetDateDischarged.Click += new System.EventHandler(this.btnSetDateDischarged_Click);
+            // 
             // Pdetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 584);
+            this.Controls.Add(this.btnSetDateDischarged);
             this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtAddress);
@@ -420,5 +432,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnSaveChanges;
         private System.Windows.Forms.ErrorProvider errEditPatient;
+        private System.Windows.Forms.Button btnSetDateDischarged;
     }
 }
