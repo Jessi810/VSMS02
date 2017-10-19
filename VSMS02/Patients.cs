@@ -162,6 +162,8 @@ namespace VSMS02
             TcpListener server = new TcpListener(IPAddress.Any, 8001);
             server.Start();
 
+            lblPort8001.Text = "Waiting for connection from client...";
+
             TcpButtonSetText((Button)sender);
 
             await Task.Run(() =>
@@ -174,6 +176,8 @@ namespace VSMS02
         {
             TcpListener server = new TcpListener(IPAddress.Any, 8002);
             server.Start();
+
+            lblPort8002.Text = "Waiting for connection from client...";
 
             TcpButtonSetText((Button)sender);
 
@@ -188,6 +192,8 @@ namespace VSMS02
             TcpListener server = new TcpListener(IPAddress.Any, 8003);
             server.Start();
 
+            lblPort8003.Text = "Waiting for connection from client...";
+
             TcpButtonSetText((Button)sender);
 
             await Task.Run(() =>
@@ -201,6 +207,8 @@ namespace VSMS02
             TcpListener server = new TcpListener(IPAddress.Any, 8004);
             server.Start();
 
+            lblPort8004.Text = "Waiting for connection from client...";
+
             TcpButtonSetText((Button)sender);
 
             await Task.Run(() =>
@@ -213,6 +221,8 @@ namespace VSMS02
         {
             TcpListener server = new TcpListener(IPAddress.Any, 8005);
             server.Start();
+
+            lblPort8005.Text = "Waiting for connection from client...";
 
             TcpButtonSetText((Button)sender);
 
@@ -236,11 +246,15 @@ namespace VSMS02
 
         private void btnOpenAllTcp_Click(object sender, EventArgs e)
         {
+            lblAllPort.Text = "Opening ports...";
+
             btnOpenTcp1.PerformClick();
             btnOpenTcp2.PerformClick();
             btnOpenTcp3.PerformClick();
             btnOpenTcp4.PerformClick();
             btnOpenTcp5.PerformClick();
+
+            lblAllPort.Text = "All ports open";
         }
 
         private void TcpButtonsEnabled(bool b)
@@ -316,7 +330,7 @@ namespace VSMS02
             // Signal the calling thread to continue.
             tcpClientConnected.Set();
         }
-
+        
         //private void btnOpenComPort_Click(object sender, EventArgs e)
         //{
         //    if (btnOpenComPort.Text.ToLower().Contains("open"))

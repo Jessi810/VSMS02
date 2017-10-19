@@ -32,21 +32,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDetails = new System.Windows.Forms.Button();
             this.grdPatients = new System.Windows.Forms.DataGridView();
-            this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.vSMSDataSet = new VSMS02.VSMSDataSet();
-            this.patientTableAdapter = new VSMS02.VSMSDataSetTableAdapters.PatientTableAdapter();
-            this.srlPatient = new System.IO.Ports.SerialPort(this.components);
-            this.stsData = new System.Windows.Forms.StatusStrip();
-            this.lblData = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnOpenTcp1 = new System.Windows.Forms.Button();
-            this.btnOpenTcp2 = new System.Windows.Forms.Button();
-            this.btnOpenTcp3 = new System.Windows.Forms.Button();
-            this.btnOpenTcp4 = new System.Windows.Forms.Button();
-            this.btnOpenTcp5 = new System.Windows.Forms.Button();
-            this.btnOpenAllTcp = new System.Windows.Forms.Button();
-            this.vSMSDataSetPatient = new VSMS02.VSMSDataSetPatient();
-            this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.patientTableAdapter1 = new VSMS02.VSMSDataSetPatientTableAdapters.PatientTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,12 +46,35 @@
             this.PhilhealthNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateAdmitted = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateDischarged = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.vSMSDataSetPatient = new VSMS02.VSMSDataSetPatient();
+            this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vSMSDataSet = new VSMS02.VSMSDataSet();
+            this.patientTableAdapter = new VSMS02.VSMSDataSetTableAdapters.PatientTableAdapter();
+            this.srlPatient = new System.IO.Ports.SerialPort(this.components);
+            this.stsData = new System.Windows.Forms.StatusStrip();
+            this.lblData = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnOpenTcp1 = new System.Windows.Forms.Button();
+            this.btnOpenTcp2 = new System.Windows.Forms.Button();
+            this.btnOpenTcp3 = new System.Windows.Forms.Button();
+            this.btnOpenTcp4 = new System.Windows.Forms.Button();
+            this.btnOpenTcp5 = new System.Windows.Forms.Button();
+            this.btnOpenAllTcp = new System.Windows.Forms.Button();
+            this.patientTableAdapter1 = new VSMS02.VSMSDataSetPatientTableAdapters.PatientTableAdapter();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblAllPort = new System.Windows.Forms.Label();
+            this.lblPort8001 = new System.Windows.Forms.Label();
+            this.lblPort8002 = new System.Windows.Forms.Label();
+            this.lblPort8003 = new System.Windows.Forms.Label();
+            this.lblPort8004 = new System.Windows.Forms.Label();
+            this.lblPort8005 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdPatients)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSetPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).BeginInit();
             this.stsData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSetPatient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -114,116 +122,9 @@
             this.grdPatients.Location = new System.Drawing.Point(13, 13);
             this.grdPatients.Name = "grdPatients";
             this.grdPatients.ReadOnly = true;
-            this.grdPatients.Size = new System.Drawing.Size(564, 150);
+            this.grdPatients.Size = new System.Drawing.Size(564, 187);
             this.grdPatients.TabIndex = 2;
             this.grdPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPatients_CellClick);
-            // 
-            // patientBindingSource
-            // 
-            this.patientBindingSource.DataMember = "Patient";
-            this.patientBindingSource.DataSource = this.vSMSDataSet;
-            // 
-            // vSMSDataSet
-            // 
-            this.vSMSDataSet.DataSetName = "VSMSDataSet";
-            this.vSMSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // patientTableAdapter
-            // 
-            this.patientTableAdapter.ClearBeforeFill = true;
-            // 
-            // srlPatient
-            // 
-            this.srlPatient.PortName = "COM5";
-            this.srlPatient.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.srlPatient_DataReceived);
-            // 
-            // stsData
-            // 
-            this.stsData.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblData});
-            this.stsData.Location = new System.Drawing.Point(0, 239);
-            this.stsData.Name = "stsData";
-            this.stsData.Size = new System.Drawing.Size(589, 22);
-            this.stsData.TabIndex = 4;
-            // 
-            // lblData
-            // 
-            this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(0, 17);
-            // 
-            // btnOpenTcp1
-            // 
-            this.btnOpenTcp1.Location = new System.Drawing.Point(175, 213);
-            this.btnOpenTcp1.Name = "btnOpenTcp1";
-            this.btnOpenTcp1.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenTcp1.TabIndex = 5;
-            this.btnOpenTcp1.Text = "Open Port 8001";
-            this.btnOpenTcp1.UseVisualStyleBackColor = true;
-            this.btnOpenTcp1.Click += new System.EventHandler(this.btnOpenTcp1_Click);
-            // 
-            // btnOpenTcp2
-            // 
-            this.btnOpenTcp2.Location = new System.Drawing.Point(257, 213);
-            this.btnOpenTcp2.Name = "btnOpenTcp2";
-            this.btnOpenTcp2.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenTcp2.TabIndex = 6;
-            this.btnOpenTcp2.Text = "Open Port 8002";
-            this.btnOpenTcp2.UseVisualStyleBackColor = true;
-            this.btnOpenTcp2.Click += new System.EventHandler(this.btnOpenTcp2_Click);
-            // 
-            // btnOpenTcp3
-            // 
-            this.btnOpenTcp3.Location = new System.Drawing.Point(339, 213);
-            this.btnOpenTcp3.Name = "btnOpenTcp3";
-            this.btnOpenTcp3.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenTcp3.TabIndex = 7;
-            this.btnOpenTcp3.Text = "Open Port 8003";
-            this.btnOpenTcp3.UseVisualStyleBackColor = true;
-            this.btnOpenTcp3.Click += new System.EventHandler(this.btnOpenTcp3_Click);
-            // 
-            // btnOpenTcp4
-            // 
-            this.btnOpenTcp4.Location = new System.Drawing.Point(421, 213);
-            this.btnOpenTcp4.Name = "btnOpenTcp4";
-            this.btnOpenTcp4.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenTcp4.TabIndex = 8;
-            this.btnOpenTcp4.Text = "Open Port 8004";
-            this.btnOpenTcp4.UseVisualStyleBackColor = true;
-            this.btnOpenTcp4.Click += new System.EventHandler(this.btnOpenTcp4_Click);
-            // 
-            // btnOpenTcp5
-            // 
-            this.btnOpenTcp5.Location = new System.Drawing.Point(503, 213);
-            this.btnOpenTcp5.Name = "btnOpenTcp5";
-            this.btnOpenTcp5.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenTcp5.TabIndex = 9;
-            this.btnOpenTcp5.Text = "Open Port 8005";
-            this.btnOpenTcp5.UseVisualStyleBackColor = true;
-            this.btnOpenTcp5.Click += new System.EventHandler(this.btnOpenTcp5_Click);
-            // 
-            // btnOpenAllTcp
-            // 
-            this.btnOpenAllTcp.Location = new System.Drawing.Point(503, 184);
-            this.btnOpenAllTcp.Name = "btnOpenAllTcp";
-            this.btnOpenAllTcp.Size = new System.Drawing.Size(75, 23);
-            this.btnOpenAllTcp.TabIndex = 10;
-            this.btnOpenAllTcp.Text = "Open All Port";
-            this.btnOpenAllTcp.UseVisualStyleBackColor = true;
-            this.btnOpenAllTcp.Click += new System.EventHandler(this.btnOpenAllTcp_Click);
-            // 
-            // vSMSDataSetPatient
-            // 
-            this.vSMSDataSetPatient.DataSetName = "VSMSDataSetPatient";
-            this.vSMSDataSetPatient.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // patientBindingSource1
-            // 
-            this.patientBindingSource1.DataMember = "Patient";
-            this.patientBindingSource1.DataSource = this.vSMSDataSetPatient;
-            // 
-            // patientTableAdapter1
-            // 
-            this.patientTableAdapter1.ClearBeforeFill = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -323,17 +224,188 @@
             this.DateDischarged.Name = "DateDischarged";
             this.DateDischarged.ReadOnly = true;
             // 
+            // patientBindingSource1
+            // 
+            this.patientBindingSource1.DataMember = "Patient";
+            this.patientBindingSource1.DataSource = this.vSMSDataSetPatient;
+            // 
+            // vSMSDataSetPatient
+            // 
+            this.vSMSDataSetPatient.DataSetName = "VSMSDataSetPatient";
+            this.vSMSDataSetPatient.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // patientBindingSource
+            // 
+            this.patientBindingSource.DataMember = "Patient";
+            this.patientBindingSource.DataSource = this.vSMSDataSet;
+            // 
+            // vSMSDataSet
+            // 
+            this.vSMSDataSet.DataSetName = "VSMSDataSet";
+            this.vSMSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // patientTableAdapter
+            // 
+            this.patientTableAdapter.ClearBeforeFill = true;
+            // 
+            // srlPatient
+            // 
+            this.srlPatient.PortName = "COM5";
+            this.srlPatient.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.srlPatient_DataReceived);
+            // 
+            // stsData
+            // 
+            this.stsData.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblData});
+            this.stsData.Location = new System.Drawing.Point(0, 239);
+            this.stsData.Name = "stsData";
+            this.stsData.Size = new System.Drawing.Size(970, 22);
+            this.stsData.TabIndex = 4;
+            // 
+            // lblData
+            // 
+            this.lblData.Name = "lblData";
+            this.lblData.Size = new System.Drawing.Size(0, 17);
+            // 
+            // btnOpenTcp1
+            // 
+            this.btnOpenTcp1.Location = new System.Drawing.Point(6, 48);
+            this.btnOpenTcp1.Name = "btnOpenTcp1";
+            this.btnOpenTcp1.Size = new System.Drawing.Size(124, 23);
+            this.btnOpenTcp1.TabIndex = 5;
+            this.btnOpenTcp1.Text = "Open Port 8001";
+            this.btnOpenTcp1.UseVisualStyleBackColor = true;
+            this.btnOpenTcp1.Click += new System.EventHandler(this.btnOpenTcp1_Click);
+            // 
+            // btnOpenTcp2
+            // 
+            this.btnOpenTcp2.Location = new System.Drawing.Point(6, 77);
+            this.btnOpenTcp2.Name = "btnOpenTcp2";
+            this.btnOpenTcp2.Size = new System.Drawing.Size(124, 23);
+            this.btnOpenTcp2.TabIndex = 6;
+            this.btnOpenTcp2.Text = "Open Port 8002";
+            this.btnOpenTcp2.UseVisualStyleBackColor = true;
+            this.btnOpenTcp2.Click += new System.EventHandler(this.btnOpenTcp2_Click);
+            // 
+            // btnOpenTcp3
+            // 
+            this.btnOpenTcp3.Location = new System.Drawing.Point(6, 106);
+            this.btnOpenTcp3.Name = "btnOpenTcp3";
+            this.btnOpenTcp3.Size = new System.Drawing.Size(124, 23);
+            this.btnOpenTcp3.TabIndex = 7;
+            this.btnOpenTcp3.Text = "Open Port 8003";
+            this.btnOpenTcp3.UseVisualStyleBackColor = true;
+            this.btnOpenTcp3.Click += new System.EventHandler(this.btnOpenTcp3_Click);
+            // 
+            // btnOpenTcp4
+            // 
+            this.btnOpenTcp4.Location = new System.Drawing.Point(6, 135);
+            this.btnOpenTcp4.Name = "btnOpenTcp4";
+            this.btnOpenTcp4.Size = new System.Drawing.Size(124, 23);
+            this.btnOpenTcp4.TabIndex = 8;
+            this.btnOpenTcp4.Text = "Open Port 8004";
+            this.btnOpenTcp4.UseVisualStyleBackColor = true;
+            this.btnOpenTcp4.Click += new System.EventHandler(this.btnOpenTcp4_Click);
+            // 
+            // btnOpenTcp5
+            // 
+            this.btnOpenTcp5.Location = new System.Drawing.Point(6, 164);
+            this.btnOpenTcp5.Name = "btnOpenTcp5";
+            this.btnOpenTcp5.Size = new System.Drawing.Size(124, 23);
+            this.btnOpenTcp5.TabIndex = 9;
+            this.btnOpenTcp5.Text = "Open Port 8005";
+            this.btnOpenTcp5.UseVisualStyleBackColor = true;
+            this.btnOpenTcp5.Click += new System.EventHandler(this.btnOpenTcp5_Click);
+            // 
+            // btnOpenAllTcp
+            // 
+            this.btnOpenAllTcp.Location = new System.Drawing.Point(6, 19);
+            this.btnOpenAllTcp.Name = "btnOpenAllTcp";
+            this.btnOpenAllTcp.Size = new System.Drawing.Size(124, 23);
+            this.btnOpenAllTcp.TabIndex = 10;
+            this.btnOpenAllTcp.Text = "Open All Port";
+            this.btnOpenAllTcp.UseVisualStyleBackColor = true;
+            this.btnOpenAllTcp.Click += new System.EventHandler(this.btnOpenAllTcp_Click);
+            // 
+            // patientTableAdapter1
+            // 
+            this.patientTableAdapter1.ClearBeforeFill = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblPort8005);
+            this.groupBox1.Controls.Add(this.lblPort8004);
+            this.groupBox1.Controls.Add(this.lblPort8003);
+            this.groupBox1.Controls.Add(this.lblPort8002);
+            this.groupBox1.Controls.Add(this.lblPort8001);
+            this.groupBox1.Controls.Add(this.lblAllPort);
+            this.groupBox1.Controls.Add(this.btnOpenAllTcp);
+            this.groupBox1.Controls.Add(this.btnOpenTcp5);
+            this.groupBox1.Controls.Add(this.btnOpenTcp1);
+            this.groupBox1.Controls.Add(this.btnOpenTcp4);
+            this.groupBox1.Controls.Add(this.btnOpenTcp2);
+            this.groupBox1.Controls.Add(this.btnOpenTcp3);
+            this.groupBox1.Location = new System.Drawing.Point(602, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(356, 208);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "TCP Listeners";
+            // 
+            // lblAllPort
+            // 
+            this.lblAllPort.Location = new System.Drawing.Point(137, 20);
+            this.lblAllPort.Name = "lblAllPort";
+            this.lblAllPort.Size = new System.Drawing.Size(213, 23);
+            this.lblAllPort.TabIndex = 11;
+            this.lblAllPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPort8001
+            // 
+            this.lblPort8001.Location = new System.Drawing.Point(137, 48);
+            this.lblPort8001.Name = "lblPort8001";
+            this.lblPort8001.Size = new System.Drawing.Size(213, 23);
+            this.lblPort8001.TabIndex = 12;
+            this.lblPort8001.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPort8002
+            // 
+            this.lblPort8002.Location = new System.Drawing.Point(136, 77);
+            this.lblPort8002.Name = "lblPort8002";
+            this.lblPort8002.Size = new System.Drawing.Size(213, 23);
+            this.lblPort8002.TabIndex = 13;
+            this.lblPort8002.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPort8003
+            // 
+            this.lblPort8003.Location = new System.Drawing.Point(136, 106);
+            this.lblPort8003.Name = "lblPort8003";
+            this.lblPort8003.Size = new System.Drawing.Size(213, 23);
+            this.lblPort8003.TabIndex = 14;
+            this.lblPort8003.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPort8004
+            // 
+            this.lblPort8004.Location = new System.Drawing.Point(136, 135);
+            this.lblPort8004.Name = "lblPort8004";
+            this.lblPort8004.Size = new System.Drawing.Size(213, 23);
+            this.lblPort8004.TabIndex = 15;
+            this.lblPort8004.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPort8005
+            // 
+            this.lblPort8005.Location = new System.Drawing.Point(136, 164);
+            this.lblPort8005.Name = "lblPort8005";
+            this.lblPort8005.Size = new System.Drawing.Size(213, 23);
+            this.lblPort8005.TabIndex = 16;
+            this.lblPort8005.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Patients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 261);
-            this.Controls.Add(this.btnOpenAllTcp);
-            this.Controls.Add(this.btnOpenTcp5);
-            this.Controls.Add(this.btnOpenTcp4);
-            this.Controls.Add(this.btnOpenTcp3);
-            this.Controls.Add(this.btnOpenTcp2);
-            this.Controls.Add(this.btnOpenTcp1);
+            this.ClientSize = new System.Drawing.Size(970, 261);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.stsData);
             this.Controls.Add(this.grdPatients);
             this.Controls.Add(this.btnDetails);
@@ -343,12 +415,13 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Patients_FormClosing);
             this.Load += new System.EventHandler(this.Patients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdPatients)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSetPatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).EndInit();
             this.stsData.ResumeLayout(false);
             this.stsData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSetPatient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,5 +461,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PhilhealthNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateAdmitted;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateDischarged;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblPort8005;
+        private System.Windows.Forms.Label lblPort8004;
+        private System.Windows.Forms.Label lblPort8003;
+        private System.Windows.Forms.Label lblPort8002;
+        private System.Windows.Forms.Label lblPort8001;
+        private System.Windows.Forms.Label lblAllPort;
     }
 }
