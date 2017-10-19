@@ -133,6 +133,9 @@ namespace VSMS02
             grdData.DataSource = bindingSource1;
             GetData("SELECT * FROM Data WHERE Patient_Id=" + pid);
 
+            // Hide last column (Patient_Id)
+            this.grdData.Columns[0].Visible = false;
+
             PatientModel pm = new PatientModel();
             pm = GetPatientData();
 
@@ -195,6 +198,13 @@ namespace VSMS02
 
                 return null;
             }
+        }
+
+        private void btnSaveChanges_Click(object sender, EventArgs e)
+        {
+            string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
+            string dbDir = projDir + "\\VSMS.mdf";
+            string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dbDir + ";Integrated Security=True";
         }
     }
 }

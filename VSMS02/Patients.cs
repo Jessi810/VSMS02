@@ -95,7 +95,9 @@ namespace VSMS02
             // Run code below if the cell clicked is not a header cell
             if (e.RowIndex > -1 && e.ColumnIndex > -1)
             {
-                int rowCount = grdPatients.RowCount - 1;
+                int rowCount = grdPatients.RowCount; // decrement row by "1" if data grid is column add-able
+
+
                 // Prevent the last row from being process as it is only blank
                 if (e.RowIndex < rowCount)
                 {
