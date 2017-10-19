@@ -167,6 +167,8 @@ namespace VSMS02
         private static void SetTextTcpLog(string str)
         {
             p.txtTcpLog.Text += str + "\r\n";
+            p.txtTcpLog.SelectionStart = p.txtTcpLog.Text.Length;
+            p.txtTcpLog.ScrollToCaret();
         }
 
         private static void SetTextTcp(Button btn, string text)

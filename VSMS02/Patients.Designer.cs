@@ -327,12 +327,14 @@
             // 
             // txtTcpLog
             // 
-            this.txtTcpLog.Enabled = false;
             this.txtTcpLog.Location = new System.Drawing.Point(606, 27);
             this.txtTcpLog.Multiline = true;
             this.txtTcpLog.Name = "txtTcpLog";
+            this.txtTcpLog.ReadOnly = true;
+            this.txtTcpLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtTcpLog.Size = new System.Drawing.Size(291, 180);
             this.txtTcpLog.TabIndex = 11;
+            this.txtTcpLog.WordWrap = false;
             // 
             // label1
             // 
