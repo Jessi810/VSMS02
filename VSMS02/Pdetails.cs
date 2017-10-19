@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using VSMS02.Models;
 
 namespace VSMS02
 {
@@ -131,6 +132,69 @@ namespace VSMS02
             // and load the data from the database.
             grdData.DataSource = bindingSource1;
             GetData("SELECT * FROM Data WHERE Patient_Id=" + pid);
+
+            PatientModel pm = new PatientModel();
+            pm = GetPatientData();
+
+            txtFirstName.Text = pm.FirstName;
+            txtMiddleName.Text = pm.MiddleName;
+            txtLastName.Text = pm.LastName;
+            cboGender.Text = pm.Gender;
+            txtAge.Text = pm.Age.ToString();
+            dteBirthDate.Value = pm.BirthDate;
+            txtAddress.Text = pm.Address;
+
+            txtPhoneNumber.Text = pm.PhoneNumber;
+            txtTelephoneNumber.Text = pm.TelephoneNumber;
+            txtContactName.Text = pm.ContactName;
+
+            txtPhilhealthNumber.Text = pm.PhilhealthNumber;
+
+            dteDateAdmitted.Value = pm.DateAdmitted;
+            dteDateDischarged.Value = pm.DateDischarged;
+        }
+
+        private PatientModel GetPatientData()
+        {
+            string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
+            string dbDir = projDir + "\\VSMS.mdf";
+            string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dbDir + ";Integrated Security=True";
+
+            PatientModel pm = new PatientModel();
+
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM Patient WHERE Id='" + pid + "'";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            pm.FirstName = reader["FirstName"].ToString();
+                            pm.MiddleName = reader["MiddleName"].ToString();
+                            pm.LastName = reader["LastName"].ToString();
+                            pm.BirthDate = (DateTime) reader["BirthDate"];
+                            pm.Address = reader["Address"].ToString();
+                            pm.Gender = reader["Gender"].ToString();
+                            pm.Age = reader.GetInt32(reader.GetOrdinal("Age"));
+                            pm.PhoneNumber = reader["PhoneNumber"].ToString();
+                            pm.TelephoneNumber = reader["TelephoneNumber"].ToString();
+                            pm.ContactName = reader["ContactName"].ToString();
+                            pm.PhilhealthNumber = reader["PhilhealthNumber"].ToString();
+                            pm.DateAdmitted = (DateTime)reader["DateAdmitted"];
+                            pm.DateDischarged = (DateTime)reader["DateDischarged"];
+
+                            return pm;
+                        }
+                    }
+                }
+
+                return null;
+            }
         }
     }
 }
