@@ -19,10 +19,13 @@ namespace VSMS02
 {
     public partial class Patients : Form
     {
+        static Patients p;
+
         private string connString = ConfigurationManager.ConnectionStrings["VSMS02.Properties.Settings.VSMSConnectionString"].ConnectionString;
 
         public Patients()
         {
+            p = this;
             InitializeComponent();
         }
 
@@ -154,10 +157,10 @@ namespace VSMS02
         private delegate void SetTextDelegate(Button btn, string text);
         private delegate void SetButtonClickDelegate(Button btn);
 
-        private void SetToolStrip(string text, Color color)
+        private static void SetToolStrip(string text, Color color)
         {
-            lblData.Text = text;
-            lblData.ForeColor = !(color == null) ? color : Color.Black;
+            p.lblData.Text = text;
+            p.lblData.ForeColor = !(color == null) ? color : Color.Black;
         }
 
         private static void SetTextTcp(Button btn, string text)
@@ -370,6 +373,7 @@ namespace VSMS02
             string serverAddress = ((IPEndPoint)listener.LocalEndpoint).Address.ToString();
             string serverPort = ((IPEndPoint)listener.LocalEndpoint).Port.ToString();
             Debug.WriteLine(serverPort + "> Waiting for connection");
+            p.Invoke(new SetToolStripDelegate(SetToolStrip), serverPort + "> Waiting for connection", Color.Black);
 
             // Accept the connection. 
             // BeginAcceptSocket() creates the accepted socket.
@@ -402,6 +406,7 @@ namespace VSMS02
 
                 // Process the connection here. (Add the client to a server table, read data, etc.)
                 Debug.WriteLine(serverPort + "> Client connected [" + clientAddressPort + "]");
+                p.Invoke(new SetToolStripDelegate(SetToolStrip), serverPort + "> Client connected [" + clientAddressPort + "]", Color.Black);
                 //---get the incoming data through a network stream---
                 using (NetworkStream nwStream = client.GetStream())
                 {
@@ -419,6 +424,8 @@ namespace VSMS02
                             listener.Server.Dispose();
                             client.Client.Dispose();
                             Debug.WriteLine(serverPort + "> Client disconnected [" + clientAddressPort + "]");
+                            p.Invoke(new SetToolStripDelegate(SetToolStrip), serverPort + "> Client disconnected [" + clientAddressPort + "]", Color.Black);
+
                             break;
                         }
 
@@ -455,6 +462,7 @@ namespace VSMS02
                         }
 
                         Debug.WriteLine(serverPort + "> " + dataReceived);
+                        p.Invoke(new SetToolStripDelegate(SetToolStrip), serverPort + "> " + dataReceived, Color.Black);
                     }
                 }
 
