@@ -32,9 +32,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDetails = new System.Windows.Forms.Button();
             this.grdPatients = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vSMSDataSet = new VSMS02.VSMSDataSet();
             this.patientTableAdapter = new VSMS02.VSMSDataSetTableAdapters.PatientTableAdapter();
@@ -47,10 +44,29 @@
             this.btnOpenTcp4 = new System.Windows.Forms.Button();
             this.btnOpenTcp5 = new System.Windows.Forms.Button();
             this.btnOpenAllTcp = new System.Windows.Forms.Button();
+            this.vSMSDataSetPatient = new VSMS02.VSMSDataSetPatient();
+            this.patientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.patientTableAdapter1 = new VSMS02.VSMSDataSetPatientTableAdapters.PatientTableAdapter();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MiddleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BirthDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TelephoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhilhealthNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateAdmitted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateDischarged = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdPatients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).BeginInit();
             this.stsData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSetPatient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -75,37 +91,32 @@
             // 
             // grdPatients
             // 
-            this.grdPatients.AllowUserToOrderColumns = true;
+            this.grdPatients.AllowUserToAddRows = false;
+            this.grdPatients.AllowUserToDeleteRows = false;
             this.grdPatients.AutoGenerateColumns = false;
             this.grdPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdPatients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.firstNameDataGridViewTextBoxColumn,
-            this.lastNameDataGridViewTextBoxColumn});
-            this.grdPatients.DataSource = this.patientBindingSource;
+            this.lastNameDataGridViewTextBoxColumn,
+            this.MiddleName,
+            this.BirthDate,
+            this.Address,
+            this.Gender,
+            this.Age,
+            this.PhoneNumber,
+            this.TelephoneNumber,
+            this.ContactName,
+            this.PhilhealthNumber,
+            this.DateAdmitted,
+            this.DateDischarged});
+            this.grdPatients.DataSource = this.patientBindingSource1;
             this.grdPatients.Location = new System.Drawing.Point(13, 13);
             this.grdPatients.Name = "grdPatients";
+            this.grdPatients.ReadOnly = true;
             this.grdPatients.Size = new System.Drawing.Size(564, 150);
             this.grdPatients.TabIndex = 2;
             this.grdPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdPatients_CellClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
             // 
             // patientBindingSource
             // 
@@ -200,6 +211,118 @@
             this.btnOpenAllTcp.UseVisualStyleBackColor = true;
             this.btnOpenAllTcp.Click += new System.EventHandler(this.btnOpenAllTcp_Click);
             // 
+            // vSMSDataSetPatient
+            // 
+            this.vSMSDataSetPatient.DataSetName = "VSMSDataSetPatient";
+            this.vSMSDataSetPatient.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // patientBindingSource1
+            // 
+            this.patientBindingSource1.DataMember = "Patient";
+            this.patientBindingSource1.DataSource = this.vSMSDataSetPatient;
+            // 
+            // patientTableAdapter1
+            // 
+            this.patientTableAdapter1.ClearBeforeFill = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "First Name";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Last Name";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // MiddleName
+            // 
+            this.MiddleName.DataPropertyName = "MiddleName";
+            this.MiddleName.HeaderText = "Middle Name";
+            this.MiddleName.Name = "MiddleName";
+            this.MiddleName.ReadOnly = true;
+            // 
+            // BirthDate
+            // 
+            this.BirthDate.DataPropertyName = "BirthDate";
+            this.BirthDate.HeaderText = "Birthdate";
+            this.BirthDate.Name = "BirthDate";
+            this.BirthDate.ReadOnly = true;
+            // 
+            // Address
+            // 
+            this.Address.DataPropertyName = "Address";
+            this.Address.HeaderText = "Address";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            // 
+            // Gender
+            // 
+            this.Gender.DataPropertyName = "Gender";
+            this.Gender.HeaderText = "Gender";
+            this.Gender.Name = "Gender";
+            this.Gender.ReadOnly = true;
+            // 
+            // Age
+            // 
+            this.Age.DataPropertyName = "Age";
+            this.Age.HeaderText = "Age";
+            this.Age.Name = "Age";
+            this.Age.ReadOnly = true;
+            // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.DataPropertyName = "PhoneNumber";
+            this.PhoneNumber.HeaderText = "Contact #";
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.ReadOnly = true;
+            // 
+            // TelephoneNumber
+            // 
+            this.TelephoneNumber.DataPropertyName = "TelephoneNumber";
+            this.TelephoneNumber.HeaderText = "Telephone #";
+            this.TelephoneNumber.Name = "TelephoneNumber";
+            this.TelephoneNumber.ReadOnly = true;
+            // 
+            // ContactName
+            // 
+            this.ContactName.DataPropertyName = "ContactName";
+            this.ContactName.HeaderText = "Contact Person";
+            this.ContactName.Name = "ContactName";
+            this.ContactName.ReadOnly = true;
+            // 
+            // PhilhealthNumber
+            // 
+            this.PhilhealthNumber.DataPropertyName = "PhilhealthNumber";
+            this.PhilhealthNumber.HeaderText = "PhilHealth #";
+            this.PhilhealthNumber.Name = "PhilhealthNumber";
+            this.PhilhealthNumber.ReadOnly = true;
+            // 
+            // DateAdmitted
+            // 
+            this.DateAdmitted.DataPropertyName = "DateAdmitted";
+            this.DateAdmitted.HeaderText = "Date Admitted";
+            this.DateAdmitted.Name = "DateAdmitted";
+            this.DateAdmitted.ReadOnly = true;
+            // 
+            // DateDischarged
+            // 
+            this.DateDischarged.DataPropertyName = "DateDischarged";
+            this.DateDischarged.HeaderText = "Date Discharged";
+            this.DateDischarged.Name = "DateDischarged";
+            this.DateDischarged.ReadOnly = true;
+            // 
             // Patients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +347,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSet)).EndInit();
             this.stsData.ResumeLayout(false);
             this.stsData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vSMSDataSetPatient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,9 +362,6 @@
         private VSMSDataSet vSMSDataSet;
         private System.Windows.Forms.BindingSource patientBindingSource;
         private VSMSDataSetTableAdapters.PatientTableAdapter patientTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.IO.Ports.SerialPort srlPatient;
         private System.Windows.Forms.StatusStrip stsData;
         private System.Windows.Forms.ToolStripStatusLabel lblData;
@@ -249,5 +371,22 @@
         private System.Windows.Forms.Button btnOpenTcp4;
         private System.Windows.Forms.Button btnOpenTcp5;
         private System.Windows.Forms.Button btnOpenAllTcp;
+        private VSMSDataSetPatient vSMSDataSetPatient;
+        private System.Windows.Forms.BindingSource patientBindingSource1;
+        private VSMSDataSetPatientTableAdapters.PatientTableAdapter patientTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MiddleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BirthDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Age;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TelephoneNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContactName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhilhealthNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateAdmitted;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateDischarged;
     }
 }

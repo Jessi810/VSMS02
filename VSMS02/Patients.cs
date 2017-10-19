@@ -73,6 +73,8 @@ namespace VSMS02
 
         private void Patients_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'vSMSDataSetPatient.Patient' table. You can move, or remove it, as needed.
+            this.patientTableAdapter1.Fill(this.vSMSDataSetPatient.Patient);
             // TODO: This line of code loads data into the 'vSMSDataSet.Patient' table. You can move, or remove it, as needed.
             this.patientTableAdapter.Fill(this.vSMSDataSet.Patient);
             

@@ -57,6 +57,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,9 +83,9 @@
             // grdData
             // 
             this.grdData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdData.Location = new System.Drawing.Point(12, 422);
+            this.grdData.Location = new System.Drawing.Point(12, 435);
             this.grdData.Name = "grdData";
-            this.grdData.Size = new System.Drawing.Size(619, 150);
+            this.grdData.Size = new System.Drawing.Size(619, 137);
             this.grdData.TabIndex = 2;
             // 
             // label3
@@ -309,11 +310,22 @@
             this.label14.Text = "Address:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(12, 408);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(102, 24);
+            this.label15.TabIndex = 31;
+            this.label15.Text = "Vital Signs:";
+            // 
             // Pdetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 584);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtAge);
@@ -384,5 +396,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
     }
 }

@@ -122,6 +122,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VSMSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="VSMSDataSetPatient.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSMSDataSetPatient.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Adetails.resx">
       <DependentUpon>Adetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +174,17 @@
     </None>
     <None Include="VSMSDataSet.xss">
       <DependentUpon>VSMSDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VSMSDataSetPatient.xsc">
+      <DependentUpon>VSMSDataSetPatient.xsd</DependentUpon>
+    </None>
+    <None Include="VSMSDataSetPatient.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VSMSDataSetPatient.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VSMSDataSetPatient.xss">
+      <DependentUpon>VSMSDataSetPatient.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
