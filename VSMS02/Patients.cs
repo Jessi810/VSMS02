@@ -185,53 +185,97 @@ namespace VSMS02
         private async void btnOpenTcp2_Click(object sender, EventArgs e)
         {
             TcpListener server = new TcpListener(IPAddress.Any, 8002);
-            server.Start();
-
-            TcpButtonSetText((Button)sender);
-
-            await Task.Run(() =>
+            if (IsTcpButtonOpen((Button)sender))
             {
-                DoBeginAcceptTcpClient(server);
-            });
+                server.Start();
+
+                TcpButtonSetText((Button)sender);
+
+                await Task.Run(() =>
+                {
+                    DoBeginAcceptTcpClient(server);
+                });
+            }
+            else
+            {
+                server.Server.Dispose();
+
+                TcpButtonSetText((Button)sender);
+            }
         }
 
         private async void btnOpenTcp3_Click(object sender, EventArgs e)
         {
             TcpListener server = new TcpListener(IPAddress.Any, 8003);
-            server.Start();
-
-            TcpButtonSetText((Button)sender);
-
-            await Task.Run(() =>
+            if (IsTcpButtonOpen((Button)sender))
             {
-                DoBeginAcceptTcpClient(server);
-            });
+                server.Start();
+
+                TcpButtonSetText((Button)sender);
+
+                await Task.Run(() =>
+                {
+                    DoBeginAcceptTcpClient(server);
+                });
+            }
+            else
+            {
+                server.Server.Dispose();
+
+                TcpButtonSetText((Button)sender);
+            }
         }
 
         private async void btnOpenTcp4_Click(object sender, EventArgs e)
         {
             TcpListener server = new TcpListener(IPAddress.Any, 8004);
-            server.Start();
-
-            TcpButtonSetText((Button)sender);
-
-            await Task.Run(() =>
+            if (IsTcpButtonOpen((Button)sender))
             {
-                DoBeginAcceptTcpClient(server);
-            });
+                server.Start();
+
+                TcpButtonSetText((Button)sender);
+
+                await Task.Run(() =>
+                {
+                    DoBeginAcceptTcpClient(server);
+                });
+            }
+            else
+            {
+                server.Server.Dispose();
+
+                TcpButtonSetText((Button)sender);
+            }
         }
 
         private async void btnOpenTcp5_Click(object sender, EventArgs e)
         {
             TcpListener server = new TcpListener(IPAddress.Any, 8005);
-            server.Start();
+            //server.Start();
 
-            TcpButtonSetText((Button)sender);
+            //TcpButtonSetText((Button)sender);
 
-            await Task.Run(() =>
+            //await Task.Run(() =>
+            //{
+            //    DoBeginAcceptTcpClient(server);
+            //});
+            if (IsTcpButtonOpen((Button)sender))
             {
-                DoBeginAcceptTcpClient(server);
-            });
+                server.Start();
+
+                TcpButtonSetText((Button)sender);
+
+                await Task.Run(() =>
+                {
+                    DoBeginAcceptTcpClient(server);
+                });
+            }
+            else
+            {
+                server.Server.Dispose();
+
+                TcpButtonSetText((Button)sender);
+            }
         }
 
         private void btnOpenAllTcp_Click(object sender, EventArgs e)
@@ -329,9 +373,9 @@ namespace VSMS02
                         if (bytesRead <= 0)
                         {
                             Debug.WriteLine(serverPort + "> Client disconnected [" + clientAddressPort + "]");
-                            //client.Client.Disconnect(true);
-                            //listener.Server.Dispose();
-                            //client.Client.Dispose();
+                            client.Client.Disconnect(true);
+                            listener.Server.Dispose();
+                            client.Client.Dispose();
                             break;
                         }
 
