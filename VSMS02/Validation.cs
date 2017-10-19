@@ -49,6 +49,35 @@ namespace VSMS02
             return true;
         }
 
+        //public static bool IsValidAge(int str)
+        //{
+        //    string age = str.ToString();
+
+        //    string validChar = "0123456789";
+        //    foreach (char c in age)
+        //    {
+        //        if (!validChar.Contains(c))
+        //        {
+        //            return false;
+        //        }
+        //    }
+
+        //    return true;
+        //}
+
+        public static bool IsValidAge(string str)
+        {
+            try
+            {
+                int age = Int32.Parse(str);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public static bool IsValidName(string str)
         {
             string validChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- ,.";

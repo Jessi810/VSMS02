@@ -223,13 +223,34 @@ namespace VSMS02
                 DateTime birthDate = dteBirthDate.Value;
                 string address = txtAddress.Text;
                 string gender = cboGender.Text;
+
+                if (!Validation.IsValidAge(txtAge.Text)) { errEditPatient.SetError(txtAge, "Invalid age"); return; }
                 int age = Int32.Parse(txtAge.Text);
+
                 string phoneNumber = txtPhoneNumber.Text;
                 string telephoneNumber = txtTelephoneNumber.Text;
                 string contactName = txtContactName.Text;
                 string philhealthNumber = txtPhilhealthNumber.Text;
                 DateTime dataAdmitted = dteDateAdmitted.Value;
                 DateTime dateDischarged = dteDateDischarged.Value;
+
+                // Validate form
+                errEditPatient.Clear();
+                Validation.ErrorCount = 0;
+                if (String.IsNullOrEmpty(firstName)) { errEditPatient.SetError(txtFirstName, "Should not be empty"); Validation.ErrorCount += 1; }
+                if (String.IsNullOrEmpty(middleName)) { errEditPatient.SetError(txtMiddleName, "Should not be empty"); Validation.ErrorCount += 1; }
+                if (String.IsNullOrEmpty(lastName)) { errEditPatient.SetError(txtLastName, "Should not be empty"); Validation.ErrorCount += 1; }
+                if (String.IsNullOrEmpty(age.ToString())) { errEditPatient.SetError(txtAge, "Should not be empty"); Validation.ErrorCount += 1; }
+                if (String.IsNullOrEmpty(gender)) { errEditPatient.SetError(cboGender, "Should not be empty"); Validation.ErrorCount += 1; }
+
+                // Check if not nullable form is not empty
+                if (!Validation.IsFormValid()) return;
+
+                if (!Validation.IsValidGender(gender)) { errEditPatient.SetError(cboGender, "Invalid gender"); Validation.ErrorCount += 1; }
+                
+                if (!Validation.IsFormValid()) return;
+
+                Validation.ErrorCount = 0;
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
