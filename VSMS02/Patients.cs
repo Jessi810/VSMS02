@@ -139,7 +139,7 @@ namespace VSMS02
                     cmd.Parameters.Add("@bloodPressure", SqlDbType.NVarChar, 50).Value = data[0];
                     cmd.Parameters.Add("@pulseRate", SqlDbType.NVarChar, 50).Value = data[1];
                     cmd.Parameters.Add("@temperature", SqlDbType.NVarChar, 50).Value = data[2];
-                    cmd.Parameters.Add("@patient_id", SqlDbType.Int, 50).Value = 1000;
+                    cmd.Parameters.Add("@patient_id", SqlDbType.Int, 50).Value = data[3];
                     connection.Open();
                     cmd.ExecuteNonQuery();
                 }
@@ -310,6 +310,36 @@ namespace VSMS02
 
                 //---convert the data received into a string---
                 string dataReceived = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                dataReceived = dataReceived.TrimEnd(System.Environment.NewLine.ToCharArray());
+
+                string[] data = dataReceived.Split(',');
+
+                string projDir = Directory.GetParent(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).FullName).FullName;
+                string dbDir = projDir + "\\VSMS.mdf";
+                string connString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dbDir + ";Integrated Security=True";
+
+                Debug.WriteLine("Time " + data[0]);
+                Debug.WriteLine("BP   " + data[1]);
+                Debug.WriteLine("PR   " + data[2]);
+                Debug.WriteLine("Temp " + data[3]);
+
+                using (SqlConnection connection = new SqlConnection(connString))
+                {
+                    string query = "INSERT into Data (Timestamp,BloodPressure,PulseRate,Temperature,Patient_Id) VALUES (@timestamp,@bloodPressure,@pulseRate,@temperature,@patient_id)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Connection = connection;
+                        cmd.Parameters.Add("@timestamp", SqlDbType.DateTime, 50).Value = DateTime.Now;
+                        cmd.Parameters.Add("@bloodPressure", SqlDbType.NVarChar, 50).Value = data[0];
+                        cmd.Parameters.Add("@pulseRate", SqlDbType.NVarChar, 50).Value = data[1];
+                        cmd.Parameters.Add("@temperature", SqlDbType.NVarChar, 50).Value = data[2];
+                        cmd.Parameters.Add("@patient_id", SqlDbType.Int, 50).Value = data[3];
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
                 Debug.WriteLine(serverPort + "> " + dataReceived);
             }
 
