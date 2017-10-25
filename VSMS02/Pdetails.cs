@@ -135,6 +135,8 @@ namespace VSMS02
 
             // Hide last column (Patient_Id)
             this.grdData.Columns[5].Visible = false;
+            this.grdData.Columns[0].HeaderText = "Record Id";
+            this.grdData.Sort(this.grdData.Columns["Timestamp"], ListSortDirection.Descending);
 
             PatientModel pm = new PatientModel();
             pm = GetPatientData();
